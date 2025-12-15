@@ -1,0 +1,118 @@
+{
+  "scan_type": "Cross-Site Scripting (XSS) Test",
+  "target": "http://localhost:8088",
+  "total_vulnerabilities": 11,
+  "vulnerabilities": [
+    {
+      "type": "Reflected XSS",
+      "url": "http://localhost:8088/vulnerabilities/fi/?page=include.php",
+      "parameter": "page",
+      "payload": "<script>alert('XSS')</script>",
+      "method": "GET",
+      "evidence": "Payload reflected in response",
+      "severity": "High",
+      "original_value": "include.php"
+    },
+    {
+      "type": "Reflected XSS",
+      "url": "http://localhost:8088/vulnerabilities/brute/",
+      "parameter": "username",
+      "payload": "<script>alert('XSS')</script>",
+      "method": "GET",
+      "evidence": "XSS payload reflected in GET response",
+      "severity": "High",
+      "form_page": "http://localhost:8088/vulnerabilities/brute/"
+    },
+    {
+      "type": "Reflected XSS",
+      "url": "http://localhost:8088/vulnerabilities/exec/",
+      "parameter": "ip",
+      "payload": "<script>alert('XSS')</script>",
+      "method": "POST",
+      "evidence": "XSS payload reflected in POST response",
+      "severity": "High",
+      "form_page": "http://localhost:8088/vulnerabilities/exec/"
+    },
+    {
+      "type": "Reflected XSS",
+      "url": "http://localhost:8088/vulnerabilities/sqli/",
+      "parameter": "id",
+      "payload": "<script>alert('XSS')</script>",
+      "method": "GET",
+      "evidence": "XSS payload reflected in GET response",
+      "severity": "High",
+      "form_page": "http://localhost:8088/vulnerabilities/sqli/"
+    },
+    {
+      "type": "Reflected XSS",
+      "url": "http://localhost:8088/vulnerabilities/sqli_blind/",
+      "parameter": "id",
+      "payload": "<script>alert('XSS')</script>",
+      "method": "GET",
+      "evidence": "XSS payload reflected in GET response",
+      "severity": "High",
+      "form_page": "http://localhost:8088/vulnerabilities/sqli_blind/"
+    },
+    {
+      "type": "Reflected XSS (Script Tag)",
+      "url": "http://localhost:8088/vulnerabilities/xss_d/",
+      "parameter": "default",
+      "payload": "<script>alert('XSS')</script>",
+      "method": "GET",
+      "evidence": "XSS payload reflected in GET response",
+      "severity": "High",
+      "form_page": "http://localhost:8088/vulnerabilities/xss_d/"
+    },
+    {
+      "type": "Reflected XSS (Script Tag)",
+      "url": "http://localhost:8088/vulnerabilities/xss_r/",
+      "parameter": "name",
+      "payload": "<script>alert('XSS')</script>",
+      "method": "GET",
+      "evidence": "XSS payload reflected in GET response",
+      "severity": "High",
+      "form_page": "http://localhost:8088/vulnerabilities/xss_r/"
+    },
+    {
+      "type": "Reflected XSS (Script Tag)",
+      "url": "http://localhost:8088/vulnerabilities/xss_s/",
+      "parameter": "txtName",
+      "payload": "<script>alert('XSS')</script>",
+      "method": "POST",
+      "evidence": "XSS payload reflected in POST response",
+      "severity": "High",
+      "form_page": "http://localhost:8088/vulnerabilities/xss_s/"
+    },
+    {
+      "type": "Reflected XSS (Script Tag)",
+      "url": "http://localhost:8088/vulnerabilities/xss_s/",
+      "parameter": "mtxMessage",
+      "payload": "<script>alert('XSS')</script>",
+      "method": "POST",
+      "evidence": "XSS payload reflected in POST response",
+      "severity": "High",
+      "form_page": "http://localhost:8088/vulnerabilities/xss_s/"
+    },
+    {
+      "type": "Reflected XSS (Script Tag)",
+      "url": "http://localhost:8088/vulnerabilities/xss_r/?name=test",
+      "parameter": "name",
+      "payload": "<script>alert('XSS')</script>",
+      "method": "GET",
+      "evidence": "Payload reflected in response",
+      "severity": "High",
+      "original_value": "test"
+    },
+    {
+      "type": "Reflected XSS",
+      "url": "http://localhost:8088/vulnerabilities/xss_r/",
+      "parameter": "name (POST)",
+      "payload": "<script>alert('XSS')</script>",
+      "method": "POST",
+      "evidence": "XSS in DVWA Reflected XSS page",
+      "severity": "High"
+    }
+  ],
+  "payloads_tested": 20,
+  "timestamp": "2025-12-08 19:32:33"
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "attempt": 1,
+    "password": "123456",
+    "success": false,
+    "response_time": 0.04808354377746582,
+    "timestamp": "2025-12-11T23:19:08.019400"
+  },
+  {
+    "attempt": 2,
+    "password": "password",
+    "success": true,
+    "response_time": 0.051720619201660156,
+    "timestamp": "2025-12-11T23:19:08.281833"
+  }
+]

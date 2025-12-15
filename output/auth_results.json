@@ -1,0 +1,120 @@
+{
+  "scan_type": "Comprehensive Authentication & Session Testing",
+  "target": "http://localhost:8088",
+  "timestamp": "2025-12-15 13:32:24",
+  "tests_performed": [
+    "Weak/Default Credential Testing",
+    "Brute-Force Attack Simulation",
+    "Session Cookie Analysis",
+    "Session Hijacking Testing",
+    "Session Fixation Testing",
+    "Basic Pattern Analysis"
+  ],
+  "vulnerabilities_found": 10,
+  "vulnerabilities": [
+    {
+      "type": "Weak/Default Credentials",
+      "url": "http://localhost:8088/login.php",
+      "credentials": "admin/password",
+      "evidence": "Successfully logged in with weak credentials",
+      "severity": "High",
+      "response_time": "0.06s",
+      "recommendation": "Enforce strong password policy and disable default credentials"
+    },
+    {
+      "type": "Weak/Default Credentials",
+      "url": "http://localhost:8088/login.php",
+      "credentials": "admin/password",
+      "evidence": "Successfully logged in with weak credentials",
+      "severity": "High",
+      "response_time": "0.06s",
+      "recommendation": "Enforce strong password policy and disable default credentials"
+    },
+    {
+      "type": "Weak/Default Credentials",
+      "url": "http://localhost:8088/login.php",
+      "credentials": "pablo/letmein",
+      "evidence": "Successfully logged in with weak credentials",
+      "severity": "High",
+      "response_time": "0.05s",
+      "recommendation": "Enforce strong password policy and disable default credentials"
+    },
+    {
+      "type": "Weak/Default Credentials",
+      "url": "http://localhost:8088/login.php",
+      "credentials": "1337/charley",
+      "evidence": "Successfully logged in with weak credentials",
+      "severity": "High",
+      "response_time": "0.05s",
+      "recommendation": "Enforce strong password policy and disable default credentials"
+    },
+    {
+      "type": "Weak/Default Credentials",
+      "url": "http://localhost:8088/login.php",
+      "credentials": "gordonb/abc123",
+      "evidence": "Successfully logged in with weak credentials",
+      "severity": "High",
+      "response_time": "0.06s",
+      "recommendation": "Enforce strong password policy and disable default credentials"
+    },
+    {
+      "type": "Brute-Force Vulnerability",
+      "url": "http://localhost:8088/login.php",
+      "username": "admin",
+      "password_found": "password",
+      "attempts_required": 2,
+      "evidence": "Password cracked in 2 attempts",
+      "severity": "High",
+      "recommendation": "Implement account lockout, rate limiting, and CAPTCHA"
+    },
+    {
+      "type": "Insecure Cookie - Missing Secure Flag",
+      "cookie": "PHPSESSID",
+      "evidence": "Cookie transmitted over non-HTTPS connections",
+      "severity": "Medium",
+      "recommendation": "Set Secure flag for all session cookies"
+    },
+    {
+      "type": "Insecure Cookie - Missing HttpOnly Flag",
+      "cookie": "PHPSESSID",
+      "evidence": "Cookie accessible via JavaScript (XSS risk)",
+      "severity": "Medium",
+      "recommendation": "Set HttpOnly flag to prevent XSS attacks"
+    },
+    {
+      "type": "Insecure Cookie - Missing SameSite Attribute",
+      "cookie": "PHPSESSID",
+      "evidence": "Cookie vulnerable to CSRF attacks",
+      "severity": "Low",
+      "recommendation": "Set SameSite=Strict or Lax attribute"
+    },
+    {
+      "type": "Session Fixation Vulnerability",
+      "evidence": "Session ID not regenerated after login",
+      "severity": "High",
+      "recommendation": "Always regenerate session ID after successful authentication"
+    }
+  ],
+  "ai_ml_insights": [
+    {
+      "type": "Password Strength Analysis",
+      "finding": "15 weak passwords detected",
+      "risk": "Medium",
+      "recommendation": "Enforce minimum password complexity requirements"
+    },
+    {
+      "type": "Timing Attack Vulnerability",
+      "finding": "Consistent response times detected",
+      "risk": "Low",
+      "recommendation": "Add random delays to prevent timing attacks"
+    }
+  ],
+  "ml_enabled": false,
+  "statistics": {
+    "weak_credentials_tested": 22,
+    "bruteforce_attempts": 99,
+    "session_cookies_analyzed": 1,
+    "avg_response_time": "0.06s",
+    "avg_session_entropy": "4.32"
+  }
+}

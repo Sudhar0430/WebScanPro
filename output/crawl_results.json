@@ -1,0 +1,654 @@
+{
+  "target": "http://localhost:8088",
+  "total_pages": 17,
+  "total_forms": 12,
+  "total_inputs": 30,
+  "pages": [
+    "http://localhost:8088/vulnerabilities/fi/?page=include.php",
+    "http://localhost:8088/vulnerabilities/weak_id/",
+    "http://localhost:8088/vulnerabilities/xss_s/",
+    "http://localhost:8088/setup.php",
+    "http://localhost:8088/",
+    "http://localhost:8088",
+    "http://localhost:8088/vulnerabilities/csrf/",
+    "http://localhost:8088/vulnerabilities/captcha/",
+    "http://localhost:8088/vulnerabilities/xss_d/",
+    "http://localhost:8088/vulnerabilities/xss_r/",
+    "http://localhost:8088/vulnerabilities/upload/",
+    "http://localhost:8088/vulnerabilities/fi/",
+    "http://localhost:8088/vulnerabilities/sqli_blind/",
+    "http://localhost:8088/vulnerabilities/exec/",
+    "http://localhost:8088/vulnerabilities/sqli/",
+    "http://localhost:8088/instructions.php",
+    "http://localhost:8088/vulnerabilities/brute/"
+  ],
+  "forms": [
+    {
+      "page_url": "http://localhost:8088/setup.php",
+      "action": "http://localhost:8088/setup.php",
+      "method": "POST",
+      "inputs": [
+        {
+          "tag": "input",
+          "type": "submit",
+          "name": "create_db",
+          "id": "",
+          "value": "Create / Reset Database",
+          "placeholder": ""
+        },
+        {
+          "tag": "input",
+          "type": "hidden",
+          "name": "user_token",
+          "id": "",
+          "value": "3d1b8486ae3a02e06a9a73676e8bad00",
+          "placeholder": ""
+        }
+      ]
+    },
+    {
+      "page_url": "http://localhost:8088/vulnerabilities/brute/",
+      "action": "http://localhost:8088/vulnerabilities/brute/",
+      "method": "GET",
+      "inputs": [
+        {
+          "tag": "input",
+          "type": "text",
+          "name": "username",
+          "id": "",
+          "value": "",
+          "placeholder": ""
+        },
+        {
+          "tag": "input",
+          "type": "password",
+          "name": "password",
+          "id": "",
+          "value": "",
+          "placeholder": ""
+        },
+        {
+          "tag": "input",
+          "type": "submit",
+          "name": "Login",
+          "id": "",
+          "value": "Login",
+          "placeholder": ""
+        }
+      ]
+    },
+    {
+      "page_url": "http://localhost:8088/vulnerabilities/exec/",
+      "action": "http://localhost:8088/vulnerabilities/exec/",
+      "method": "POST",
+      "inputs": [
+        {
+          "tag": "input",
+          "type": "text",
+          "name": "ip",
+          "id": "",
+          "value": "",
+          "placeholder": ""
+        },
+        {
+          "tag": "input",
+          "type": "submit",
+          "name": "Submit",
+          "id": "",
+          "value": "Submit",
+          "placeholder": ""
+        }
+      ]
+    },
+    {
+      "page_url": "http://localhost:8088/vulnerabilities/csrf/",
+      "action": "http://localhost:8088/vulnerabilities/csrf/",
+      "method": "GET",
+      "inputs": [
+        {
+          "tag": "input",
+          "type": "password",
+          "name": "password_new",
+          "id": "",
+          "value": "",
+          "placeholder": ""
+        },
+        {
+          "tag": "input",
+          "type": "password",
+          "name": "password_conf",
+          "id": "",
+          "value": "",
+          "placeholder": ""
+        },
+        {
+          "tag": "input",
+          "type": "submit",
+          "name": "Change",
+          "id": "",
+          "value": "Change",
+          "placeholder": ""
+        }
+      ]
+    },
+    {
+      "page_url": "http://localhost:8088/vulnerabilities/upload/",
+      "action": "http://localhost:8088/vulnerabilities/upload/",
+      "method": "POST",
+      "inputs": [
+        {
+          "tag": "input",
+          "type": "hidden",
+          "name": "MAX_FILE_SIZE",
+          "id": "",
+          "value": "100000",
+          "placeholder": ""
+        },
+        {
+          "tag": "input",
+          "type": "file",
+          "name": "uploaded",
+          "id": "",
+          "value": "",
+          "placeholder": ""
+        },
+        {
+          "tag": "input",
+          "type": "submit",
+          "name": "Upload",
+          "id": "",
+          "value": "Upload",
+          "placeholder": ""
+        }
+      ]
+    },
+    {
+      "page_url": "http://localhost:8088/vulnerabilities/captcha/",
+      "action": "http://localhost:8088/vulnerabilities/captcha/",
+      "method": "POST",
+      "inputs": [
+        {
+          "tag": "input",
+          "type": "hidden",
+          "name": "step",
+          "id": "",
+          "value": "1",
+          "placeholder": ""
+        },
+        {
+          "tag": "input",
+          "type": "password",
+          "name": "password_new",
+          "id": "",
+          "value": "",
+          "placeholder": ""
+        },
+        {
+          "tag": "input",
+          "type": "password",
+          "name": "password_conf",
+          "id": "",
+          "value": "",
+          "placeholder": ""
+        },
+        {
+          "tag": "input",
+          "type": "submit",
+          "name": "Change",
+          "id": "",
+          "value": "Change",
+          "placeholder": ""
+        }
+      ]
+    },
+    {
+      "page_url": "http://localhost:8088/vulnerabilities/sqli/",
+      "action": "http://localhost:8088/vulnerabilities/sqli/",
+      "method": "GET",
+      "inputs": [
+        {
+          "tag": "input",
+          "type": "text",
+          "name": "id",
+          "id": "",
+          "value": "",
+          "placeholder": ""
+        },
+        {
+          "tag": "input",
+          "type": "submit",
+          "name": "Submit",
+          "id": "",
+          "value": "Submit",
+          "placeholder": ""
+        }
+      ]
+    },
+    {
+      "page_url": "http://localhost:8088/vulnerabilities/sqli_blind/",
+      "action": "http://localhost:8088/vulnerabilities/sqli_blind/",
+      "method": "GET",
+      "inputs": [
+        {
+          "tag": "input",
+          "type": "text",
+          "name": "id",
+          "id": "",
+          "value": "",
+          "placeholder": ""
+        },
+        {
+          "tag": "input",
+          "type": "submit",
+          "name": "Submit",
+          "id": "",
+          "value": "Submit",
+          "placeholder": ""
+        }
+      ]
+    },
+    {
+      "page_url": "http://localhost:8088/vulnerabilities/weak_id/",
+      "action": "http://localhost:8088/vulnerabilities/weak_id/",
+      "method": "POST",
+      "inputs": [
+        {
+          "tag": "input",
+          "type": "submit",
+          "name": "",
+          "id": "",
+          "value": "Generate",
+          "placeholder": ""
+        }
+      ]
+    },
+    {
+      "page_url": "http://localhost:8088/vulnerabilities/xss_d/",
+      "action": "http://localhost:8088/vulnerabilities/xss_d/",
+      "method": "GET",
+      "inputs": [
+        {
+          "tag": "select",
+          "type": "text",
+          "name": "default",
+          "id": "",
+          "value": "",
+          "placeholder": ""
+        },
+        {
+          "tag": "input",
+          "type": "submit",
+          "name": "",
+          "id": "",
+          "value": "Select",
+          "placeholder": ""
+        }
+      ]
+    },
+    {
+      "page_url": "http://localhost:8088/vulnerabilities/xss_r/",
+      "action": "http://localhost:8088/vulnerabilities/xss_r/",
+      "method": "GET",
+      "inputs": [
+        {
+          "tag": "input",
+          "type": "text",
+          "name": "name",
+          "id": "",
+          "value": "",
+          "placeholder": ""
+        },
+        {
+          "tag": "input",
+          "type": "submit",
+          "name": "",
+          "id": "",
+          "value": "Submit",
+          "placeholder": ""
+        }
+      ]
+    },
+    {
+      "page_url": "http://localhost:8088/vulnerabilities/xss_s/",
+      "action": "http://localhost:8088/vulnerabilities/xss_s/",
+      "method": "POST",
+      "inputs": [
+        {
+          "tag": "input",
+          "type": "text",
+          "name": "txtName",
+          "id": "",
+          "value": "",
+          "placeholder": ""
+        },
+        {
+          "tag": "textarea",
+          "type": "text",
+          "name": "mtxMessage",
+          "id": "",
+          "value": "",
+          "placeholder": ""
+        },
+        {
+          "tag": "input",
+          "type": "submit",
+          "name": "btnSign",
+          "id": "",
+          "value": "Sign Guestbook",
+          "placeholder": ""
+        },
+        {
+          "tag": "input",
+          "type": "submit",
+          "name": "btnClear",
+          "id": "",
+          "value": "Clear Guestbook",
+          "placeholder": ""
+        }
+      ]
+    }
+  ],
+  "inputs": [
+    {
+      "page": "http://localhost:8088/setup.php",
+      "form_action": "#",
+      "tag": "input",
+      "type": "submit",
+      "name": "create_db",
+      "id": "",
+      "value": "Create / Reset Database",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/setup.php",
+      "form_action": "#",
+      "tag": "input",
+      "type": "hidden",
+      "name": "user_token",
+      "id": "",
+      "value": "3d1b8486ae3a02e06a9a73676e8bad00",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/brute/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "text",
+      "name": "username",
+      "id": "",
+      "value": "",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/brute/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "password",
+      "name": "password",
+      "id": "",
+      "value": "",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/brute/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "submit",
+      "name": "Login",
+      "id": "",
+      "value": "Login",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/exec/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "text",
+      "name": "ip",
+      "id": "",
+      "value": "",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/exec/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "submit",
+      "name": "Submit",
+      "id": "",
+      "value": "Submit",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/csrf/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "password",
+      "name": "password_new",
+      "id": "",
+      "value": "",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/csrf/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "password",
+      "name": "password_conf",
+      "id": "",
+      "value": "",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/csrf/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "submit",
+      "name": "Change",
+      "id": "",
+      "value": "Change",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/upload/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "hidden",
+      "name": "MAX_FILE_SIZE",
+      "id": "",
+      "value": "100000",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/upload/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "file",
+      "name": "uploaded",
+      "id": "",
+      "value": "",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/upload/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "submit",
+      "name": "Upload",
+      "id": "",
+      "value": "Upload",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/captcha/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "hidden",
+      "name": "step",
+      "id": "",
+      "value": "1",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/captcha/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "password",
+      "name": "password_new",
+      "id": "",
+      "value": "",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/captcha/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "password",
+      "name": "password_conf",
+      "id": "",
+      "value": "",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/captcha/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "submit",
+      "name": "Change",
+      "id": "",
+      "value": "Change",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/sqli/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "text",
+      "name": "id",
+      "id": "",
+      "value": "",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/sqli/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "submit",
+      "name": "Submit",
+      "id": "",
+      "value": "Submit",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/sqli_blind/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "text",
+      "name": "id",
+      "id": "",
+      "value": "",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/sqli_blind/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "submit",
+      "name": "Submit",
+      "id": "",
+      "value": "Submit",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/weak_id/",
+      "form_action": "",
+      "tag": "input",
+      "type": "submit",
+      "name": "",
+      "id": "",
+      "value": "Generate",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/xss_d/",
+      "form_action": "",
+      "tag": "select",
+      "type": "text",
+      "name": "default",
+      "id": "",
+      "value": "",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/xss_d/",
+      "form_action": "",
+      "tag": "input",
+      "type": "submit",
+      "name": "",
+      "id": "",
+      "value": "Select",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/xss_r/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "text",
+      "name": "name",
+      "id": "",
+      "value": "",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/xss_r/",
+      "form_action": "#",
+      "tag": "input",
+      "type": "submit",
+      "name": "",
+      "id": "",
+      "value": "Submit",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/xss_s/",
+      "form_action": "",
+      "tag": "input",
+      "type": "text",
+      "name": "txtName",
+      "id": "",
+      "value": "",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/xss_s/",
+      "form_action": "",
+      "tag": "textarea",
+      "type": "text",
+      "name": "mtxMessage",
+      "id": "",
+      "value": "",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/xss_s/",
+      "form_action": "",
+      "tag": "input",
+      "type": "submit",
+      "name": "btnSign",
+      "id": "",
+      "value": "Sign Guestbook",
+      "placeholder": ""
+    },
+    {
+      "page": "http://localhost:8088/vulnerabilities/xss_s/",
+      "form_action": "",
+      "tag": "input",
+      "type": "submit",
+      "name": "btnClear",
+      "id": "",
+      "value": "Clear Guestbook",
+      "placeholder": ""
+    }
+  ],
+  "timestamp": "2025-12-04 21:59:07"
+}

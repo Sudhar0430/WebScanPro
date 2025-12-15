@@ -1,0 +1,29 @@
+{
+  "scan_type": "SQL Injection Test",
+  "target": "http://localhost:8088",
+  "total_vulnerabilities": 2,
+  "vulnerabilities": [
+    {
+      "type": "SQL Injection",
+      "url": "http://localhost:8088/vulnerabilities/sqli/?id=1&Submit=Submit",
+      "parameter": "id",
+      "payload": "'",
+      "method": "GET",
+      "evidence": "SQL error in response",
+      "severity": "High",
+      "response_time": "0.03s"
+    },
+    {
+      "type": "SQL Injection",
+      "url": "http://localhost:8088/vulnerabilities/sqli/",
+      "parameter": "id (POST)",
+      "payload": "'",
+      "method": "POST",
+      "evidence": "SQL error in DVWA response",
+      "severity": "High",
+      "response_time": "N/A"
+    }
+  ],
+  "payloads_tested": 23,
+  "timestamp": "2025-12-04 22:00:08"
+}

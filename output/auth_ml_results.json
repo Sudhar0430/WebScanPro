@@ -1,0 +1,140 @@
+{
+  "scan_type": "Comprehensive Authentication & Session Testing",
+  "target": "http://localhost:8088",
+  "timestamp": "2025-12-15 13:35:53",
+  "tests_performed": [
+    "Weak/Default Credential Testing",
+    "Brute-Force Attack Simulation",
+    "Session Cookie Analysis",
+    "Session Hijacking Testing",
+    "Session Fixation Testing",
+    "AI/ML Pattern Analysis"
+  ],
+  "vulnerabilities_found": 10,
+  "vulnerabilities": [
+    {
+      "type": "Weak/Default Credentials",
+      "url": "http://localhost:8088/login.php",
+      "credentials": "admin/password",
+      "evidence": "Successfully logged in with weak credentials",
+      "severity": "High",
+      "response_time": "0.05s",
+      "recommendation": "Enforce strong password policy and disable default credentials",
+      "ml_enhanced": true,
+      "ml_confidence": "95%"
+    },
+    {
+      "type": "Weak/Default Credentials",
+      "url": "http://localhost:8088/login.php",
+      "credentials": "admin/password",
+      "evidence": "Successfully logged in with weak credentials",
+      "severity": "High",
+      "response_time": "0.05s",
+      "recommendation": "Enforce strong password policy and disable default credentials",
+      "ml_enhanced": true,
+      "ml_confidence": "95%"
+    },
+    {
+      "type": "Weak/Default Credentials",
+      "url": "http://localhost:8088/login.php",
+      "credentials": "pablo/letmein",
+      "evidence": "Successfully logged in with weak credentials",
+      "severity": "High",
+      "response_time": "0.05s",
+      "recommendation": "Enforce strong password policy and disable default credentials",
+      "ml_enhanced": true,
+      "ml_confidence": "95%"
+    },
+    {
+      "type": "Weak/Default Credentials",
+      "url": "http://localhost:8088/login.php",
+      "credentials": "1337/charley",
+      "evidence": "Successfully logged in with weak credentials",
+      "severity": "High",
+      "response_time": "0.05s",
+      "recommendation": "Enforce strong password policy and disable default credentials",
+      "ml_enhanced": true,
+      "ml_confidence": "95%"
+    },
+    {
+      "type": "Weak/Default Credentials",
+      "url": "http://localhost:8088/login.php",
+      "credentials": "gordonb/abc123",
+      "evidence": "Successfully logged in with weak credentials",
+      "severity": "High",
+      "response_time": "0.05s",
+      "recommendation": "Enforce strong password policy and disable default credentials",
+      "ml_enhanced": true,
+      "ml_confidence": "95%"
+    },
+    {
+      "type": "Brute-Force Vulnerability",
+      "url": "http://localhost:8088/login.php",
+      "username": "admin",
+      "password_found": "password",
+      "attempts_required": 2,
+      "evidence": "Password cracked in 2 attempts",
+      "severity": "High",
+      "recommendation": "Implement account lockout, rate limiting, and CAPTCHA",
+      "ml_analysis": {
+        "pattern": "Sequential password testing",
+        "rate_analysis": "No rate limiting detected",
+        "confidence": "89%"
+      }
+    },
+    {
+      "type": "Insecure Cookie - Missing Secure Flag",
+      "cookie": "PHPSESSID",
+      "evidence": "Cookie transmitted over non-HTTPS connections",
+      "severity": "Medium",
+      "recommendation": "Set Secure flag for all session cookies"
+    },
+    {
+      "type": "Insecure Cookie - Missing HttpOnly Flag",
+      "cookie": "PHPSESSID",
+      "evidence": "Cookie accessible via JavaScript (XSS risk)",
+      "severity": "Medium",
+      "recommendation": "Set HttpOnly flag to prevent XSS attacks"
+    },
+    {
+      "type": "Insecure Cookie - Missing SameSite Attribute",
+      "cookie": "PHPSESSID",
+      "evidence": "Cookie vulnerable to CSRF attacks",
+      "severity": "Low",
+      "recommendation": "Set SameSite=Strict or Lax attribute"
+    },
+    {
+      "type": "Session Fixation Vulnerability",
+      "evidence": "Session ID not regenerated after login",
+      "severity": "High",
+      "recommendation": "Always regenerate session ID after successful authentication",
+      "ml_model": "Pattern Recognition + Sequence Analysis",
+      "confidence": "78%"
+    }
+  ],
+  "ai_ml_insights": [],
+  "ml_enabled": true,
+  "statistics": {
+    "weak_credentials_tested": 22,
+    "bruteforce_attempts": 99,
+    "session_cookies_analyzed": 1,
+    "avg_response_time": "0.05s",
+    "avg_session_entropy": "4.16"
+  },
+  "ml_models_used": [
+    "anomaly_detector",
+    "attack_classifier",
+    "entropy_analyzer",
+    "time_clusterer"
+  ],
+  "ml_statistics": {
+    "models_trained": 3,
+    "insights_generated": 0
+  },
+  "data_collected": {
+    "response_times": 17,
+    "login_attempts": 17,
+    "session_ids": 1,
+    "passwords_analyzed": 17
+  }
+}

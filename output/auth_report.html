@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebScanPro - Authentication Security Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .header { background: linear-gradient(135deg, #3498db 0%, #2c3e50 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 20px; }
+        .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0; }
+        .stat-box { background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center; }
+        .stat-number { font-size: 2em; font-weight: bold; }
+        .high { color: #e74c3c; border-left: 4px solid #e74c3c; }
+        .medium { color: #f39c12; border-left: 4px solid #f39c12; }
+        .low { color: #27ae60; border-left: 4px solid #27ae60; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background: #3498db; color: white; }
+        .vuln-row { background: #ffe6e6; }
+        .ai-insight { background: #e8f4fd; border-left: 4px solid #3498db; }
+        code { background: #2c3e50; color: #ecf0f1; padding: 2px 6px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 Authentication & Session Security Report</h1>
+            <p>Generated: 2025-12-15 13:32:24 | Target: http://localhost:8088</p>
+        </div>
+        
+        <div class="stat-grid">
+            <div class="stat-box high">
+                <div class="stat-number">10</div>
+                <div>Vulnerabilities Found</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">6</div>
+                <div>Tests Performed</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">22</div>
+                <div>Credentials Tested</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">99</div>
+                <div>Brute-Force Attempts</div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>📋 Tests Performed</h2>
+            <ul><li>Weak/Default Credential Testing</li><li>Brute-Force Attack Simulation</li><li>Session Cookie Analysis</li><li>Session Hijacking Testing</li><li>Session Fixation Testing</li><li>Basic Pattern Analysis</li>
+            </ul>
+        </div>
+        <div class="card">
+            <h2>🤖 AI/ML Security Insights</h2>
+            <div class="ai-insight" style="margin: 10px 0; padding: 15px;">
+                <h3>Password Strength Analysis (Medium)</h3>
+                <p><strong>Finding:</strong> 15 weak passwords detected</p>
+                <p><strong>Recommendation:</strong> Enforce minimum password complexity requirements</p>
+            </div>
+            <div class="ai-insight" style="margin: 10px 0; padding: 15px;">
+                <h3>Timing Attack Vulnerability (Low)</h3>
+                <p><strong>Finding:</strong> Consistent response times detected</p>
+                <p><strong>Recommendation:</strong> Add random delays to prevent timing attacks</p>
+            </div>
+        </div>
+        <div class="card">
+            <h2>🔴 Detected Vulnerabilities</h2>
+            <table>
+                <tr>
+                    <th>Type</th>
+                    <th>Evidence</th>
+                    <th>Severity</th>
+                    <th>Recommendation</th>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Weak/Default Credentials</td>
+                    <td>Successfully logged in with weak credentials</td>
+                    <td class="high">High</td>
+                    <td>Enforce strong password policy and disable default credentials</td>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Weak/Default Credentials</td>
+                    <td>Successfully logged in with weak credentials</td>
+                    <td class="high">High</td>
+                    <td>Enforce strong password policy and disable default credentials</td>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Weak/Default Credentials</td>
+                    <td>Successfully logged in with weak credentials</td>
+                    <td class="high">High</td>
+                    <td>Enforce strong password policy and disable default credentials</td>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Weak/Default Credentials</td>
+                    <td>Successfully logged in with weak credentials</td>
+                    <td class="high">High</td>
+                    <td>Enforce strong password policy and disable default credentials</td>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Weak/Default Credentials</td>
+                    <td>Successfully logged in with weak credentials</td>
+                    <td class="high">High</td>
+                    <td>Enforce strong password policy and disable default credentials</td>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Brute-Force Vulnerability</td>
+                    <td>Password cracked in 2 attempts</td>
+                    <td class="high">High</td>
+                    <td>Implement account lockout, rate limiting, and CAPTCHA</td>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Insecure Cookie - Missing Secure Flag</td>
+                    <td>Cookie transmitted over non-HTTPS connections</td>
+                    <td class="medium">Medium</td>
+                    <td>Set Secure flag for all session cookies</td>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Insecure Cookie - Missing HttpOnly Flag</td>
+                    <td>Cookie accessible via JavaScript (XSS risk)</td>
+                    <td class="medium">Medium</td>
+                    <td>Set HttpOnly flag to prevent XSS attacks</td>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Insecure Cookie - Missing SameSite Attribute</td>
+                    <td>Cookie vulnerable to CSRF attacks</td>
+                    <td class="low">Low</td>
+                    <td>Set SameSite=Strict or Lax attribute</td>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Session Fixation Vulnerability</td>
+                    <td>Session ID not regenerated after login</td>
+                    <td class="high">High</td>
+                    <td>Always regenerate session ID after successful authentication</td>
+                </tr>
+            </table>
+        </div>
+        <div class="card">
+            <h2>🔧 OWASP Best Practices Checklist</h2>
+            <table>
+                <tr><th>Check</th><th>Status</th><th>OWASP Reference</th></tr>
+                <tr><td>Strong Password Policy</td><td>✅ Tested</td><td>M7:2017</td></tr>
+                <tr><td>Account Lockout Mechanism</td><td>✅ Tested</td><td>A2:2017</td></tr>
+                <tr><td>Secure Session Cookies</td><td>✅ Tested</td><td>A3:2017</td></tr>
+                <tr><td>Session ID Regeneration</td><td>✅ Tested</td><td>A2:2021</td></tr>
+                <tr><td>Multi-Factor Authentication</td><td>⚠️ Not Tested</td><td>A2:2021</td></tr>
+                <tr><td>Password Hashing</td><td>⚠️ Not Tested</td><td>A2:2017</td></tr>
+            </table>
+        </div>
+        
+        <div class="card">
+            <h2>📊 Security Statistics</h2>
+            <table>
+                <tr><th>Metric</th><th>Value</th></tr><tr><td>Weak Credentials Tested</td><td>22</td></tr><tr><td>Bruteforce Attempts</td><td>99</td></tr><tr><td>Session Cookies Analyzed</td><td>1</td></tr><tr><td>Avg Response Time</td><td>0.06s</td></tr><tr><td>Avg Session Entropy</td><td>4.32</td></tr>
+            </table>
+        </div>
+        
+        <div class="card" style="background: #f8f9fa; text-align: center;">
+            <p>Generated by <strong>WebScanPro</strong> - Automated Security Scanner</p>
+            <p>OWASP Compliance: A2 (Broken Authentication), A7 (Cross-Site Scripting)</p>
+            <p>© 2024 Infosys Internship Project - Week 5: Authentication & Session Testing</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebScanPro - Target Analysis Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 20px; }
+        .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0; }
+        .stat-box { background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center; border-left: 4px solid #667eea; }
+        .stat-number { font-size: 2em; font-weight: bold; color: #667eea; }
+        .stat-label { color: #666; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background: #667eea; color: white; }
+        tr:nth-child(even) { background: #f9f9f9; }
+        .vulnerable { color: #e74c3c; font-weight: bold; }
+        .safe { color: #27ae60; }
+        .warning { color: #f39c12; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔒 WebScanPro Security Scan Report</h1>
+            <p>Target Analysis | Generated: 2025-12-04 21:59:07</p>
+        </div>
+        
+        <div class="card">
+            <h2>📊 Scan Summary</h2>
+            <div class="stat-grid">
+                <div class="stat-box">
+                    <div class="stat-number">17</div>
+                    <div class="stat-label">Pages Crawled</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Forms Found</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">30</div>
+                    <div class="stat-label">Input Fields</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">13</div>
+                    <div class="stat-label">Injection Points</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <h2>🎯 Target Information</h2>
+            <p><strong>Target URL:</strong> http://localhost:8088</p>
+            <p><strong>Scan Date:</strong> 2025-12-04 21:59:07</p>
+        </div>
+        
+        <div class="card">
+            <h2>🔍 Input Field Analysis</h2>
+            <table>
+                <tr>
+                    <th>Input Type</th>
+                    <th>Count</th>
+                    <th>Risk Level</th>
+                </tr>
+                <tr>
+                    <td>submit</td>
+                    <td>13</td>
+                    <td class="safe">Low</td>
+                </tr>
+                <tr>
+                    <td>hidden</td>
+                    <td>3</td>
+                    <td class="safe">Low</td>
+                </tr>
+                <tr>
+                    <td>text</td>
+                    <td>8</td>
+                    <td class="vulnerable">High</td>
+                </tr>
+                <tr>
+                    <td>password</td>
+                    <td>5</td>
+                    <td class="vulnerable">High</td>
+                </tr>
+                <tr>
+                    <td>file</td>
+                    <td>1</td>
+                    <td class="safe">Low</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="card">
+            <h2>⚠️ Potential Injection Points</h2>
+            <table>
+                <tr>
+                    <th>Page URL</th>
+                    <th>Field Name</th>
+                    <th>Field Type</th>
+                    <th>Risk</th>
+                </tr>
+                <tr>
+                    <td>http://localhost:8088/vulnerabilities/brute/...</td>
+                    <td>username</td>
+                    <td>text</td>
+                    <td class="vulnerable">High</td>
+                </tr>
+                <tr>
+                    <td>http://localhost:8088/vulnerabilities/brute/...</td>
+                    <td>password</td>
+                    <td>password</td>
+                    <td class="vulnerable">High</td>
+                </tr>
+                <tr>
+                    <td>http://localhost:8088/vulnerabilities/exec/...</td>
+                    <td>ip</td>
+                    <td>text</td>
+                    <td class="vulnerable">High</td>
+                </tr>
+                <tr>
+                    <td>http://localhost:8088/vulnerabilities/csrf/...</td>
+                    <td>password_new</td>
+                    <td>password</td>
+                    <td class="vulnerable">High</td>
+                </tr>
+                <tr>
+                    <td>http://localhost:8088/vulnerabilities/csrf/...</td>
+                    <td>password_conf</td>
+                    <td>password</td>
+                    <td class="vulnerable">High</td>
+                </tr>
+                <tr>
+                    <td>http://localhost:8088/vulnerabilities/captcha/...</td>
+                    <td>password_new</td>
+                    <td>password</td>
+                    <td class="vulnerable">High</td>
+                </tr>
+                <tr>
+                    <td>http://localhost:8088/vulnerabilities/captcha/...</td>
+                    <td>password_conf</td>
+                    <td>password</td>
+                    <td class="vulnerable">High</td>
+                </tr>
+                <tr>
+                    <td>http://localhost:8088/vulnerabilities/sqli/...</td>
+                    <td>id</td>
+                    <td>text</td>
+                    <td class="vulnerable">High</td>
+                </tr>
+                <tr>
+                    <td>http://localhost:8088/vulnerabilities/sqli_blind/...</td>
+                    <td>id</td>
+                    <td>text</td>
+                    <td class="vulnerable">High</td>
+                </tr>
+                <tr>
+                    <td>http://localhost:8088/vulnerabilities/xss_d/...</td>
+                    <td>default</td>
+                    <td>text</td>
+                    <td class="vulnerable">High</td>
+                </tr>
+                <tr>
+                    <td>http://localhost:8088/vulnerabilities/xss_r/...</td>
+                    <td>name</td>
+                    <td>text</td>
+                    <td class="vulnerable">High</td>
+                </tr>
+                <tr>
+                    <td>http://localhost:8088/vulnerabilities/xss_s/...</td>
+                    <td>txtName</td>
+                    <td>text</td>
+                    <td class="vulnerable">High</td>
+                </tr>
+                <tr>
+                    <td>http://localhost:8088/vulnerabilities/xss_s/...</td>
+                    <td>mtxMessage</td>
+                    <td>text</td>
+                    <td class="vulnerable">High</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="card">
+            <h2>📄 Discovered Pages</h2>
+            <ul><li><a href="http://localhost:8088/vulnerabilities/fi/?page=include.php" target="_blank">http://localhost:8088/vulnerabilities/fi/?page=include.php</a></li><li><a href="http://localhost:8088/vulnerabilities/weak_id/" target="_blank">http://localhost:8088/vulnerabilities/weak_id/</a></li><li><a href="http://localhost:8088/vulnerabilities/xss_s/" target="_blank">http://localhost:8088/vulnerabilities/xss_s/</a></li><li><a href="http://localhost:8088/setup.php" target="_blank">http://localhost:8088/setup.php</a></li><li><a href="http://localhost:8088/" target="_blank">http://localhost:8088/</a></li><li><a href="http://localhost:8088" target="_blank">http://localhost:8088</a></li><li><a href="http://localhost:8088/vulnerabilities/csrf/" target="_blank">http://localhost:8088/vulnerabilities/csrf/</a></li><li><a href="http://localhost:8088/vulnerabilities/captcha/" target="_blank">http://localhost:8088/vulnerabilities/captcha/</a></li><li><a href="http://localhost:8088/vulnerabilities/xss_d/" target="_blank">http://localhost:8088/vulnerabilities/xss_d/</a></li><li><a href="http://localhost:8088/vulnerabilities/xss_r/" target="_blank">http://localhost:8088/vulnerabilities/xss_r/</a></li><li><a href="http://localhost:8088/vulnerabilities/upload/" target="_blank">http://localhost:8088/vulnerabilities/upload/</a></li><li><a href="http://localhost:8088/vulnerabilities/fi/" target="_blank">http://localhost:8088/vulnerabilities/fi/</a></li><li><a href="http://localhost:8088/vulnerabilities/sqli_blind/" target="_blank">http://localhost:8088/vulnerabilities/sqli_blind/</a></li><li><a href="http://localhost:8088/vulnerabilities/exec/" target="_blank">http://localhost:8088/vulnerabilities/exec/</a></li><li><a href="http://localhost:8088/vulnerabilities/sqli/" target="_blank">http://localhost:8088/vulnerabilities/sqli/</a></li><li><a href="http://localhost:8088/instructions.php" target="_blank">http://localhost:8088/instructions.php</a></li><li><a href="http://localhost:8088/vulnerabilities/brute/" target="_blank">http://localhost:8088/vulnerabilities/brute/</a></li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h2>🔧 Recommendations</h2>
+            <ol>
+                <li>Test all text input fields for SQL Injection vulnerabilities</li>
+                <li>Test all forms for Cross-Site Scripting (XSS) attacks</li>
+                <li>Check authentication forms for weak session management</li>
+                <li>Verify access controls on user-specific pages</li>
+                <li>Test file upload functionality if present</li>
+            </ol>
+        </div>
+        
+        <div class="card" style="background: #f8f9fa; text-align: center;">
+            <p>Generated by <strong>WebScanPro</strong> - Automated Web Application Security Scanner</p>
+            <p>© 2024 Infosys Internship Project</p>
+        </div>
+    </div>
+</body>
+</html>

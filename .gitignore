@@ -1,0 +1,21 @@
+# Create .gitignore file
+echo "# Python cache and environments" > .gitignore
+echo "__pycache__/" >> .gitignore
+echo "*.pyc" >> .gitignore
+echo "venv/" >> .gitignore
+echo ".venv/" >> .gitignore
+echo "" >> .gitignore
+echo "# Output folders (should not be uploaded)" >> .gitignore
+echo "output/" >> .gitignore
+echo "ml_models/" >> .gitignore
+echo "ml_logs/" >> .gitignore
+echo "" >> .gitignore
+echo "# VS Code settings" >> .gitignore
+echo ".vscode/" >> .gitignore
+echo "" >> .gitignore
+echo "# System files" >> .gitignore
+echo ".DS_Store" >> .gitignore
+echo "Thumbs.db" >> .gitignore
+echo "" >> .gitignore
+echo "# Logs" >> .gitignore
+echo "*.log" >> .gitignore
