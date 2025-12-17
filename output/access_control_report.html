@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>WebScanPro - Access Control & IDOR Security Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .header { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; padding: 30px; border-radius: 10px; margin-bottom: 20px; }
+        .card { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+        .ml-card { background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); color: white; }
+        .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0; }
+        .stat-box { background: #f8f9fa; padding: 15px; border-radius: 8px; text-align: center; }
+        .stat-number { font-size: 2em; font-weight: bold; }
+        .high { color: #e74c3c; border-left: 4px solid #e74c3c; }
+        .medium { color: #f39c12; border-left: 4px solid #f39c12; }
+        .low { color: #27ae60; border-left: 4px solid #27ae60; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background: #e74c3c; color: white; }
+        .vuln-row { background: #ffe6e6; }
+        .ml-row { background: #f0e6f5; }
+        code { background: #2c3e50; color: #ecf0f1; padding: 2px 6px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔐 Access Control & IDOR Security Report</h1>
+            <p>Generated: 2025-12-17 12:53:05 | Target: http://localhost:8088</p>
+        </div>
+        
+        <div class="stat-grid">
+            <div class="stat-box high">
+                <div class="stat-number">10</div>
+                <div>Access Control Vulnerabilities</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">3</div>
+                <div>Roles Identified</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">7</div>
+                <div>IDOR Tests</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">4</div>
+                <div>ML Models Trained</div>
+            </div>
+        </div>
+        
+        <div class="card ml-card">
+            <h2>🤖 Machine Learning Analysis</h2>
+            <p><strong>Models Used:</strong> response_clusterer, access_classifier, idor_detector, escalation_detector</p>
+            
+            <div class="stat-grid">
+                <div class="stat-box" style="background: #8e44ad; color: white;">
+                    <div class="stat-number">K-Means</div>
+                    <div>Clustering Analysis</div>
+                </div>
+                <div class="stat-box" style="background: #9b59b6; color: white;">
+                    <div class="stat-number">Random Forest</div>
+                    <div>Classification</div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        
+        <div class="card">
+            <h2>⚠️ Detected Access Control Vulnerabilities</h2>
+            <table>
+                <tr>
+                    <th>Type</th>
+                    <th>Evidence</th>
+                    <th>Severity</th>
+                    <th>Recommendation</th>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Vertical Privilege Escalation</td>
+                    <td>user can access admin endpoint: /setup.php</td>
+                    <td class="high">High</td>
+                    <td>Implement proper role-based access control (RBAC)</td>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Vertical Privilege Escalation</td>
+                    <td>user can access admin endpoint: /security.php</td>
+                    <td class="high">High</td>
+                    <td>Implement proper role-based access control (RBAC)</td>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Vertical Privilege Escalation</td>
+                    <td>guest can access admin endpoint: /setup.php</td>
+                    <td class="high">High</td>
+                    <td>Implement proper role-based access control (RBAC)</td>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Insecure Direct Object Reference (IDOR)</td>
+                    <td>Accessed resource with ID=2 using ID=1 credentials</td>
+                    <td class="high">High</td>
+                    <td>Implement indirect object references or UUIDs with proper authorization checks</td>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Insecure Direct Object Reference (IDOR)</td>
+                    <td>Accessed resource with ID=3 using ID=1 credentials</td>
+                    <td class="high">High</td>
+                    <td>Implement indirect object references or UUIDs with proper authorization checks</td>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Insecure Direct Object Reference (IDOR)</td>
+                    <td>Accessed resource with ID=4 using ID=1 credentials</td>
+                    <td class="high">High</td>
+                    <td>Implement indirect object references or UUIDs with proper authorization checks</td>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Insecure Direct Object Reference (IDOR)</td>
+                    <td>Accessed resource with ID=5 using ID=1 credentials</td>
+                    <td class="high">High</td>
+                    <td>Implement indirect object references or UUIDs with proper authorization checks</td>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Insecure Direct Object Reference (IDOR)</td>
+                    <td>Accessed resource with ID=2 using ID=1 credentials</td>
+                    <td class="high">High</td>
+                    <td>Implement indirect object references or UUIDs with proper authorization checks</td>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Insecure Direct Object Reference (IDOR)</td>
+                    <td>Accessed resource with ID=3 using ID=1 credentials</td>
+                    <td class="high">High</td>
+                    <td>Implement indirect object references or UUIDs with proper authorization checks</td>
+                </tr>
+                <tr class="vuln-row">
+                    <td>Insecure Direct Object Reference (IDOR)</td>
+                    <td>Accessed resource with ID=2 using ID=1 credentials</td>
+                    <td class="high">High</td>
+                    <td>Implement indirect object references or UUIDs with proper authorization checks</td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="card">
+            <h2>🔧 Suggested Mitigations</h2>
+            <ul><li>Implement Role-Based Access Control (RBAC) with proper privilege separation</li><li>Use Attribute-Based Access Control (ABAC) for complex authorization scenarios</li><li>Always perform server-side authorization checks, never rely on client-side</li><li>Use indirect object references or UUIDs instead of sequential IDs</li><li>Implement proper session management with role validation</li><li>Regularly audit access control policies and permissions</li><li>Use principle of least privilege for all user roles</li><li>Implement proper error handling without revealing sensitive information</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h2>📊 OWASP Compliance</h2>
+            <table>
+                <tr><th>OWASP Top 10</th><th>Category</th><th>Status</th></tr>
+                <tr><td>A01:2021</td><td>Broken Access Control</td><td>✅ Tested</td></tr>
+                <tr><td>A05:2021</td><td>Security Misconfiguration</td><td>✅ Tested</td></tr>
+                <tr><td>Additional</td><td>IDOR Vulnerabilities</td><td>✅ Tested</td></tr>
+            </table>
+        </div>
+        
+        <div class="card" style="text-align: center; background: #2c3e50; color: white;">
+            <h3>🔬 Week 6: Access Control & IDOR Testing Complete</h3>
+            <p>AI/ML Models: K-Means Clustering • Random Forest Classification • Pattern Recognition</p>
+            <p>© 2024 Infosys Internship Project - Real ML Implementation</p>
+        </div>
+    </div>
+</body>
+</html>

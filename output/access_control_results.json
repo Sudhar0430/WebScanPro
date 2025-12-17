@@ -1,0 +1,138 @@
+{
+  "scan_type": "Access Control & IDOR Security Testing",
+  "target": "http://localhost:8088",
+  "timestamp": "2025-12-17 12:53:05",
+  "tests_performed": [
+    "Role Identification & Analysis",
+    "IDOR Vulnerability Testing",
+    "Access Control Violation Testing",
+    "Horizontal & Vertical Privilege Escalation Testing",
+    "AI/ML Pattern Analysis"
+  ],
+  "vulnerabilities_found": 10,
+  "vulnerabilities": [
+    {
+      "type": "Vertical Privilege Escalation",
+      "role": "user",
+      "endpoint": "/setup.php",
+      "evidence": "user can access admin endpoint: /setup.php",
+      "severity": "High",
+      "recommendation": "Implement proper role-based access control (RBAC)"
+    },
+    {
+      "type": "Vertical Privilege Escalation",
+      "role": "user",
+      "endpoint": "/security.php",
+      "evidence": "user can access admin endpoint: /security.php",
+      "severity": "High",
+      "recommendation": "Implement proper role-based access control (RBAC)"
+    },
+    {
+      "type": "Vertical Privilege Escalation",
+      "role": "guest",
+      "endpoint": "/setup.php",
+      "evidence": "guest can access admin endpoint: /setup.php",
+      "severity": "High",
+      "recommendation": "Implement proper role-based access control (RBAC)"
+    },
+    {
+      "type": "Insecure Direct Object Reference (IDOR)",
+      "url": "http://localhost:8088/vulnerabilities/sqli/",
+      "parameter": "id",
+      "authorized_id": 1,
+      "accessed_id": 2,
+      "evidence": "Accessed resource with ID=2 using ID=1 credentials",
+      "severity": "High",
+      "recommendation": "Implement indirect object references or UUIDs with proper authorization checks"
+    },
+    {
+      "type": "Insecure Direct Object Reference (IDOR)",
+      "url": "http://localhost:8088/vulnerabilities/sqli/",
+      "parameter": "id",
+      "authorized_id": 1,
+      "accessed_id": 3,
+      "evidence": "Accessed resource with ID=3 using ID=1 credentials",
+      "severity": "High",
+      "recommendation": "Implement indirect object references or UUIDs with proper authorization checks"
+    },
+    {
+      "type": "Insecure Direct Object Reference (IDOR)",
+      "url": "http://localhost:8088/vulnerabilities/sqli/",
+      "parameter": "id",
+      "authorized_id": 1,
+      "accessed_id": 4,
+      "evidence": "Accessed resource with ID=4 using ID=1 credentials",
+      "severity": "High",
+      "recommendation": "Implement indirect object references or UUIDs with proper authorization checks"
+    },
+    {
+      "type": "Insecure Direct Object Reference (IDOR)",
+      "url": "http://localhost:8088/vulnerabilities/sqli/",
+      "parameter": "id",
+      "authorized_id": 1,
+      "accessed_id": 5,
+      "evidence": "Accessed resource with ID=5 using ID=1 credentials",
+      "severity": "High",
+      "recommendation": "Implement indirect object references or UUIDs with proper authorization checks"
+    },
+    {
+      "type": "Insecure Direct Object Reference (IDOR)",
+      "url": "http://localhost:8088/vulnerabilities/view_source.php",
+      "parameter": "id",
+      "authorized_id": 1,
+      "accessed_id": 2,
+      "evidence": "Accessed resource with ID=2 using ID=1 credentials",
+      "severity": "High",
+      "recommendation": "Implement indirect object references or UUIDs with proper authorization checks"
+    },
+    {
+      "type": "Insecure Direct Object Reference (IDOR)",
+      "url": "http://localhost:8088/vulnerabilities/view_source.php",
+      "parameter": "id",
+      "authorized_id": 1,
+      "accessed_id": 3,
+      "evidence": "Accessed resource with ID=3 using ID=1 credentials",
+      "severity": "High",
+      "recommendation": "Implement indirect object references or UUIDs with proper authorization checks"
+    },
+    {
+      "type": "Insecure Direct Object Reference (IDOR)",
+      "url": "http://localhost:8088/vulnerabilities/upload/",
+      "parameter": "id",
+      "authorized_id": 1,
+      "accessed_id": 2,
+      "evidence": "Accessed resource with ID=2 using ID=1 credentials",
+      "severity": "High",
+      "recommendation": "Implement indirect object references or UUIDs with proper authorization checks"
+    }
+  ],
+  "ml_insights": [],
+  "ml_models_used": [
+    "response_clusterer",
+    "access_classifier",
+    "idor_detector",
+    "escalation_detector"
+  ],
+  "statistics": {
+    "roles_identified": 3,
+    "idor_tests_performed": 7,
+    "access_control_tests": 3,
+    "ml_models_trained": 4
+  },
+  "ml_analysis_results": {
+    "idor_analysis": {
+      "patterns": [],
+      "vulnerable_clusters": []
+    }
+  },
+  "suggested_mitigations": [
+    "Implement Role-Based Access Control (RBAC) with proper privilege separation",
+    "Use Attribute-Based Access Control (ABAC) for complex authorization scenarios",
+    "Always perform server-side authorization checks, never rely on client-side",
+    "Use indirect object references or UUIDs instead of sequential IDs",
+    "Implement proper session management with role validation",
+    "Regularly audit access control policies and permissions",
+    "Use principle of least privilege for all user roles",
+    "Implement proper error handling without revealing sensitive information"
+  ]
+}
