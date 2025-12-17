@@ -7,7 +7,7 @@ import os
 import random
 from datetime import datetime
 from colorama import init, Fore
-from collections import defaultdict
+from collections import defaultdict, Counter
 
 # Machine Learning Imports
 import numpy as np
@@ -55,6 +55,17 @@ class AccessControlAnalyzer:
             random_state=42,
             n_init=10
         )
+
+    def _calculate_euclidean_distance(self, X, centers):
+        """Calculate Euclidean distance without scipy dependency"""
+        distances = []
+        for x in X:
+            row_distances = []
+            for center in centers:
+                dist = np.sqrt(np.sum((x - center) ** 2))
+                row_distances.append(dist)
+                distances.append(row_distances)
+                return np.array(distances)
         
         # 2. Access Control Classifier (Random Forest)
         self.models['access_classifier'] = RandomForestClassifier(

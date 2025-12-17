@@ -1,0 +1,4 @@
+Week 6 completed at: 2025-12-17 13:09:17
+Access control vulnerabilities found: 10
+ML models trained: 1
+IDOR tests performed: 7

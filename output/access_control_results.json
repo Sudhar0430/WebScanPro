@@ -1,7 +1,7 @@
 {
   "scan_type": "Access Control & IDOR Security Testing",
   "target": "http://localhost:8088",
-  "timestamp": "2025-12-17 12:53:05",
+  "timestamp": "2025-12-17 13:09:17",
   "tests_performed": [
     "Role Identification & Analysis",
     "IDOR Vulnerability Testing",
@@ -108,16 +108,13 @@
   ],
   "ml_insights": [],
   "ml_models_used": [
-    "response_clusterer",
-    "access_classifier",
-    "idor_detector",
-    "escalation_detector"
+    "response_clusterer"
   ],
   "statistics": {
     "roles_identified": 3,
     "idor_tests_performed": 7,
     "access_control_tests": 3,
-    "ml_models_trained": 4
+    "ml_models_trained": 1
   },
   "ml_analysis_results": {
     "idor_analysis": {

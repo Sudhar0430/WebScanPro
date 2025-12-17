@@ -2,6 +2,7 @@
 from modules.crawler import IntelligentCrawler
 from modules.access_control_tester import AccessControlTester
 from colorama import init, Fore
+from collections import defaultdict
 import json
 import os
 
