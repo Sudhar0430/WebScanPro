@@ -123,12 +123,12 @@ def run_week6():
         print(f"\n{Fore.MAGENTA}{'='*70}")
         print(f"{Fore.MAGENTA}              WEEK 6: ALL TASKS COMPLETED!")
         print(f"{Fore.MAGENTA}{'='*70}")
-        print(f"{Fore.GREEN}✅ All 5 tasks from mentor's email completed successfully")
-        print(f"{Fore.GREEN}✅ Real ML models (K-Means & Random Forest) implemented")
-        print(f"{Fore.GREEN}✅ Horizontal & vertical privilege escalation tested")
-        print(f"{Fore.GREEN}✅ IDOR vulnerability detection implemented")
-        print(f"{Fore.GREEN}✅ Professional reports generated with ML insights")
-        print(f"{Fore.GREEN}✅ Ready for mentor review!")
+       
+        print(f"{Fore.GREEN} Real ML models (K-Means & Random Forest) implemented")
+        print(f"{Fore.GREEN} Horizontal & vertical privilege escalation tested")
+        print(f"{Fore.GREEN} IDOR vulnerability detection implemented")
+        print(f"{Fore.GREEN} Professional reports generated with ML insights")
+      
         
     else:
         print(f"{Fore.RED}[-] Failed to login to DVWA!")
