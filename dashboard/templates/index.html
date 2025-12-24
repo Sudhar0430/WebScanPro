@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Security Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #34495e;
+            --danger-color: #e74c3c;
+            --warning-color: #e67e22;
+            --success-color: #27ae60;
+            --info-color: #3498db;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .dashboard-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin: 30px auto;
+            padding: 30px;
+            min-height: 90vh;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--primary-color) !important;
+            font-size: 1.8rem;
+        }
+        
+        .nav-link {
+            font-weight: 600;
+            color: var(--secondary-color) !important;
+            margin: 0 10px;
+            padding: 10px 20px !important;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white !important;
+            transform: translateY(-2px);
+        }
+        
+        .nav-link.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white !important;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+            border-left: 5px solid var(--info-color);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card.critical {
+            border-left-color: var(--danger-color);
+        }
+        
+        .card.high {
+            border-left-color: var(--warning-color);
+        }
+        
+        .card.medium {
+            border-left-color: var(--info-color);
+        }
+        
+        .card.low {
+            border-left-color: var(--success-color);
+        }
+        
+        .metric-card {
+            text-align: center;
+            padding: 25px;
+        }
+        
+        .metric-value {
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 15px 0;
+        }
+        
+        .risk-badge {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .badge-critical {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+        }
+        
+        .badge-high {
+            background: linear-gradient(45deg, #e67e22, #d35400);
+            color: white;
+        }
+        
+        .badge-medium {
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            color: white;
+        }
+        
+        .badge-low {
+            background: linear-gradient(45deg, #27ae60, #229954);
+            color: white;
+        }
+        
+        .vulnerability-item {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 5px solid;
+        }
+        
+        .vuln-critical {
+            border-left-color: var(--danger-color);
+            background: linear-gradient(90deg, rgba(231, 76, 60, 0.1), white);
+        }
+        
+        .vuln-high {
+            border-left-color: var(--warning-color);
+            background: linear-gradient(90deg, rgba(230, 126, 34, 0.1), white);
+        }
+        
+        .vuln-medium {
+            border-left-color: var(--info-color);
+            background: linear-gradient(90deg, rgba(52, 152, 219, 0.1), white);
+        }
+        
+        .vuln-low {
+            border-left-color: var(--success-color);
+            background: linear-gradient(90deg, rgba(39, 174, 96, 0.1), white);
+        }
+        
+        .chart-container {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-bottom: 25px;
+        }
+        
+        .executive-summary {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+        
+        .ai-badge {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
+        .btn-ai {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-ai:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            color: white;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-11">
+                <div class="dashboard-container">
+                    <!-- Navigation -->
+                    <nav class="navbar navbar-expand-lg navbar-light mb-4">
+                        <div class="container-fluid">
+                            <a class="navbar-brand" href="#">
+                                <i class="fas fa-shield-alt"></i> AI Security Dashboard
+                            </a>
+                            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                                <span class="navbar-toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse" id="navbarNav">
+                                <ul class="navbar-nav ms-auto">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#">
+                                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                                        </a>
+                                    </li>
+                                    
+                                    <!-- In your main dashboard navigation -->
+<li class="nav-item">
+    <a class="nav-link" href="/weekly-reports">
+        <i class="fas fa-file-alt"></i> Weekly Reports
+    </a>
+</li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/ai-report">
+                                            <i class="fas fa-robot"></i> AI Analysis
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/generate-pdf">
+                                            <i class="fas fa-download"></i> Export PDF
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+
+                    <!-- Executive Summary -->
+                    <div class="executive-summary">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h3 class="mb-3">
+                                    <i class="fas fa-brain"></i> AI Executive Summary
+                                    <span class="ai-badge">95% Confidence</span>
+                                </h3>
+                                <p class="lead">{{ summary.narrative }}</p>
+                                <p><strong>AI Recommendation:</strong> {{ summary.recommendation }}</p>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <div class="metric-card">
+                                    <div class="metric-label">Security Score</div>
+                                    <div class="metric-value" style="color: #667eea;">{{ summary.key_metrics.average_risk_score|default(0)|float|round(1) }}/10</div>
+                                    <span class="risk-badge badge-{{ summary.key_metrics.risk_color|default('medium') }}">
+                                        {{ summary.key_metrics.overall_risk_level|default('MEDIUM') }} RISK
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Key Metrics -->
+                    <div class="row mt-4">
+                        <div class="col-md-3">
+                            <div class="card critical">
+                                <div class="card-body metric-card">
+                                    <h5 class="card-title">Critical</h5>
+                                    <div class="metric-value" style="color: #e74c3c;">
+                                        {{ summary.key_metrics.critical_count|default(0) }}
+                                    </div>
+                                    <p class="card-text">Requires Immediate Action</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card high">
+                                <div class="card-body metric-card">
+                                    <h5 class="card-title">High Severity</h5>
+                                    <div class="metric-value" style="color: #e67e22;">
+                                        {{ summary.key_metrics.high_count|default(0) }}
+                                    </div>
+                                    <p class="card-text">Address within 72 hours</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card medium">
+                                <div class="card-body metric-card">
+                                    <h5 class="card-title">Medium Risk</h5>
+                                    <div class="metric-value" style="color: #3498db;">
+                                        {{ summary.key_metrics.medium_count|default(0) }}
+                                    </div>
+                                    <p class="card-text">Schedule for next sprint</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card low">
+                                <div class="card-body metric-card">
+                                    <h5 class="card-title">Total Vulnerabilities</h5>
+                                    <div class="metric-value" style="color: #27ae60;">
+                                        {{ summary.key_metrics.total_vulnerabilities|default(0) }}
+                                    </div>
+                                    <p class="card-text">Across all test modules</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts -->
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="chart-container">
+                                <h5><i class="fas fa-chart-pie"></i> Severity Distribution</h5>
+                                <div id="severityChart" style="height: 300px;"></div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="chart-container">
+                                <h5><i class="fas fa-chart-bar"></i> Vulnerability Types</h5>
+                                <div id="typeChart" style="height: 300px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Top Vulnerabilities -->
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <i class="fas fa-exclamation-triangle"></i> Top Priority Vulnerabilities
+                                        <button class="btn btn-ai btn-sm float-end" onclick="location.href='/ai-report'">
+                                            <i class="fas fa-robot"></i> Generate AI Report
+                                        </button>
+                                    </h5>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Type</th>
+                                                    <th>Severity</th>
+                                                    <th>Risk Score</th>
+                                                    <th>Endpoint</th>
+                                                    <th>Mitigation</th>
+                                                    <th>Source</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="vulnerabilitiesTable">
+                                                <!-- Filled by JavaScript -->
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI Analysis Actions -->
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-file-pdf fa-3x mb-3" style="color: #e74c3c;"></i>
+                                    <h5>Export PDF Report</h5>
+                                    <p>Professional security assessment report</p>
+                                    <a href="/generate-pdf" class="btn btn-ai">
+                                        <i class="fas fa-download"></i> Download PDF
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-robot fa-3x mb-3" style="color: #667eea;"></i>
+                                    <h5>AI Analysis</h5>
+                                    <p>Deep learning vulnerability assessment</p>
+                                    <a href="/ai-report" class="btn btn-ai">
+                                        <i class="fas fa-brain"></i> View AI Report
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <i class="fas fa-chart-line fa-3x mb-3" style="color: #27ae60;"></i>
+                                    <h5>Trend Analysis</h5>
+                                    <p>Vulnerability trends over time</p>
+                                    <button class="btn btn-ai" onclick="loadTrends()">
+                                        <i class="fas fa-chart-line"></i> View Trends
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <!-- Footer -->
+                    <div class="footer">
+                        <p>
+                            <i class="fas fa-cogs"></i> AI Security Dashboard v1.0 | 
+                            <i class="fas fa-bolt"></i> Powered by Machine Learning | 
+                            Generated: {{ summary.generated_at|default('N/A') }}
+                        </p>
+                        <p class="text-muted">
+                            Using Logistic Regression & TF-IDF for vulnerability classification | 
+                            OWASP Top 10 aligned recommendations
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Load dashboard data
+        $(document).ready(function() {
+            loadDashboardData();
+            loadCharts();
+        });
+
+        function loadDashboardData() {
+            $.getJSON('/api/dashboard-data', function(data) {
+                // Update vulnerabilities table
+                let tableHtml = '';
+                data.vulnerabilities.slice(0, 10).forEach(function(vuln) {
+                    let severityClass = 'badge-' + vuln.severity.toLowerCase();
+                    tableHtml += `
+                        <tr>
+                            <td><span class="ai-badge">${vuln.type}</span></td>
+                            <td><span class="risk-badge ${severityClass}">${vuln.severity}</span></td>
+                            <td><strong>${vuln.risk_score}</strong>/10</td>
+                            <td><code>${vuln.endpoint.substring(0, 40)}${vuln.endpoint.length > 40 ? '...' : ''}</code></td>
+                            <td>${vuln.mitigations[0].substring(0, 50)}...</td>
+                            <td>${vuln.source_report}</td>
+                        </tr>
+                    `;
+                });
+                $('#vulnerabilitiesTable').html(tableHtml);
+            });
+        }
+
+        function loadCharts() {
+            // Severity Distribution Chart
+            $.getJSON('/api/severity-distribution', function(data) {
+                let labels = Object.keys(data);
+                let values = Object.values(data);
+                let colors = ['#e74c3c', '#e67e22', '#3498db', '#27ae60'];
+                
+                let severityChart = {
+                    data: [{
+                        values: values,
+                        labels: labels,
+                        type: 'pie',
+                        marker: {
+                            colors: colors
+                        },
+                        textinfo: 'label+percent',
+                        hoverinfo: 'label+value+percent',
+                        hole: 0.4,
+                        rotation: 45
+                    }],
+                    layout: {
+                        height: 300,
+                        showlegend: true,
+                        plot_bgcolor: 'transparent',
+                        paper_bgcolor: 'transparent',
+                        legend: {
+                            orientation: 'h'
+                        }
+                    }
+                };
+                
+                Plotly.newPlot('severityChart', severityChart.data, severityChart.layout);
+            });
+
+            // Vulnerability Trends Chart
+            $.getJSON('/api/vulnerability-trends', function(data) {
+                let dates = data.map(item => item.date);
+                let counts = data.map(item => item.count);
+                
+                let trendChart = {
+                    data: [{
+                        x: dates,
+                        y: counts,
+                        type: 'scatter',
+                        mode: 'lines+markers',
+                        line: {
+                            color: '#667eea',
+                            width: 3
+                        },
+                        marker: {
+                            color: '#764ba2',
+                            size: 8
+                        },
+                        fill: 'tozeroy',
+                        fillcolor: 'rgba(102, 126, 234, 0.1)'
+                    }],
+                    layout: {
+                        title: 'Vulnerability Trends (Last 10 Days)',
+                        height: 300,
+                        plot_bgcolor: 'transparent',
+                        paper_bgcolor: 'transparent',
+                        xaxis: {
+                            type: 'date'
+                        },
+                        yaxis: {
+                            title: 'Number of Vulnerabilities'
+                        }
+                    }
+                };
+                
+                // Create trend chart if element exists
+                if ($('#trendChart').length) {
+                    Plotly.newPlot('trendChart', trendChart.data, trendChart.layout);
+                }
+            });
+        }
+
+        function loadTrends() {
+            // Create trends modal or redirect
+            window.location.href = '/ai-report#trends';
+        }
+        
+    </script>
+</body>
+</html>
