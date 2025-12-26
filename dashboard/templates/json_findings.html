@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Findings - AI Security Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" rel="stylesheet">
+    <style>
+body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+    }
+    .dashboard-container {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        padding: 30px;
+        margin-top: 20px;
+    }
+    .navbar-brand {
+        font-weight: 700;
+        color: #2c3e50 !important;
+        font-size: 1.8rem;
+    }
+    .nav-link {
+        font-weight: 600;
+        color: #34495e !important;
+        margin: 0 10px;
+        padding: 10px 20px !important;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+    .nav-link:hover, .nav-link.active {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white !important;
+    }
+    
+    /* JSON Specific Styles */
+    .json-nav {
+        background: #f8f9fa;
+        border-radius: 10px;
+        padding: 15px;
+        max-height: 500px;
+        overflow-y: auto;
+    }
+    .json-file-item {
+        border: none;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    .json-file-item:hover {
+        transform: translateX(5px);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .json-preview {
+        background: #282c34;
+        border-radius: 10px;
+        padding: 20px;
+        height: 600px;
+        overflow-y: auto;
+        font-family: 'Consolas', 'Monaco', monospace;
+    }
+    
+    /* Severity Badges (Matching Dashboard Colors) */
+    .severity-badge {
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+    .critical { 
+        background: linear-gradient(45deg, #e74c3c, #c0392b);
+        color: white; 
+    }
+    .high { 
+        background: linear-gradient(45deg, #e67e22, #d35400);
+        color: white; 
+    }
+    .medium { 
+        background: linear-gradient(45deg, #3498db, #2980b9);
+        color: white; 
+    }
+    .low { 
+        background: linear-gradient(45deg, #27ae60, #229954);
+        color: white; 
+    }
+    .info { 
+        background: linear-gradient(45deg, #9b59b6, #8e44ad);
+        color: white; 
+    }
+    
+    /* JSON Tree Viewer Styles */
+    .json-tree {
+        font-family: 'Consolas', 'Monaco', monospace;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    .json-key {
+        color: #61afef;
+        font-weight: bold;
+    }
+    .json-string {
+        color: #98c379;
+    }
+    .json-number {
+        color: #d19a66;
+    }
+    .json-boolean {
+        color: #c678dd;
+    }
+    .json-null {
+        color: #e06c75;
+    }
+    .json-toggle {
+        color: #56b6c2;
+        cursor: pointer;
+        margin-right: 5px;
+        user-select: none;
+    }
+    
+    /* Cards and Layout (Matching Weekly Reports) */
+    .report-card {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        margin-bottom: 25px;
+        transition: transform 0.3s;
+    }
+    .report-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    /* Summary Cards */
+    .summary-card {
+        border: none;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 15px;
+        transition: transform 0.3s;
+        background: #f8f9fa;
+    }
+    .summary-card:hover {
+        transform: translateY(-3px);
+    }
+    .vuln-count {
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+    
+    /* Gradient Cards (Matching Dashboard) */
+    .card.critical {
+        border-left: 5px solid #e74c3c;
+    }
+    .card.high {
+        border-left: 5px solid #e67e22;
+    }
+    .card.medium {
+        border-left: 5px solid #3498db;
+    }
+    .card.low {
+        border-left: 5px solid #27ae60;
+    }
+    
+    /* Buttons (Matching Dashboard) */
+    .btn-ai {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 12px 30px;
+        border-radius: 10px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    .btn-ai:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        color: white;
+    }
+    
+    /* Metric Cards (Matching Dashboard) */
+    .metric-card {
+        text-align: center;
+        padding: 25px;
+    }
+    .metric-value {
+        font-size: 3rem;
+        font-weight: 700;
+        margin: 15px 0;
+    }
+    
+    /* Risk Badges (Matching Dashboard) */
+    .risk-badge {
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+    .badge-critical {
+        background: linear-gradient(45deg, #e74c3c, #c0392b);
+        color: white;
+    }
+    .badge-high {
+        background: linear-gradient(45deg, #e67e22, #d35400);
+        color: white;
+    }
+    .badge-medium {
+        background: linear-gradient(45deg, #3498db, #2980b9);
+        color: white;
+    }
+    .badge-low {
+        background: linear-gradient(45deg, #27ae60, #229954);
+        color: white;
+    }
+    
+    /* AI Badge (Matching Dashboard) */
+    .ai-badge {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-container">
+            <!-- Navigation -->
+            <nav class="navbar navbar-expand-lg navbar-light mb-4">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">
+                        <i class="fas fa-shield-alt"></i> AI Security Dashboard
+                    </a>
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="/">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a>
+                        <a class="nav-link" href="/weekly-reports">
+                            <i class="fas fa-file-alt"></i> Weekly Reports
+                        </a>
+                        <a class="nav-link active" href="/json-findings">
+                            <i class="fas fa-code"></i> JSON Findings
+                        </a>
+                        <a class="nav-link" href="/ai-report">
+                            <i class="fas fa-robot"></i> AI Analysis
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+            <h2 class="mb-4"><i class="fas fa-database"></i> JSON Scan Findings</h2>
+            
+            <div class="row">
+                <!-- Left Sidebar - JSON File Navigation -->
+                <div class="col-md-4">
+                    <div class="json-nav">
+                        <h5><i class="fas fa-folder-open"></i> Available JSON Files</h5>
+                        <p class="text-muted small mb-3">Click on any JSON file to view its contents</p>
+                        
+                        <div class="list-group" id="json-file-list">
+                            <!-- JSON files will be loaded here -->
+                        </div>
+                        
+                        <!-- File Summary -->
+                        <div class="mt-4">
+                            <h6><i class="fas fa-chart-bar"></i> Quick Summary</h6>
+                            <div class="row" id="file-summary">
+                                <!-- Summary will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Panel - JSON Viewer -->
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header bg-dark text-white">
+                            <h5 class="mb-0">
+                                <i class="fas fa-file-code"></i> JSON Viewer
+                                <span id="current-filename" class="badge bg-light text-dark float-end">Select a file</span>
+                            </h5>
+                        </div>
+                        <div class="card-body p-0">
+                            <!-- JSON Preview -->
+                            <div id="json-preview">
+                                <div class="text-center py-5" id="empty-preview">
+                                    <i class="fas fa-code fa-4x text-muted mb-3"></i>
+                                    <h5 class="text-muted">No JSON File Selected</h5>
+                                    <p class="text-muted">Select a JSON file from the list to view its contents.</p>
+                                </div>
+                                <div id="json-content" class="json-preview d-none"></div>
+                            </div>
+                            
+                            <!-- JSON Actions -->
+                            <div class="p-3 border-top" id="json-actions" style="display: none;">
+                                <button class="btn btn-primary btn-sm" onclick="downloadJSON()">
+                                    <i class="fas fa-download"></i> Download JSON
+                                </button>
+                                <button class="btn btn-success btn-sm ms-2" onclick="copyToClipboard()">
+                                    <i class="fas fa-copy"></i> Copy to Clipboard
+                                </button>
+                                <button class="btn btn-info btn-sm ms-2" onclick="toggleTreeView()">
+                                    <i class="fas fa-sitemap"></i> Toggle Tree View
+                                </button>
+                                <button class="btn btn-warning btn-sm ms-2" onclick="analyzeJSON()">
+                                    <i class="fas fa-search"></i> Analyze Structure
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- JSON Analysis -->
+                    <div class="card mt-3 d-none" id="analysis-card">
+                        <div class="card-header bg-info text-white">
+                            <h6 class="mb-0"><i class="fas fa-chart-pie"></i> JSON Analysis</h6>
+                        </div>
+                        <div class="card-body">
+                            <div id="json-analysis"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    
+    <script>
+        // Current JSON file being viewed
+        let currentJSONFile = '';
+        let currentJSONData = null;
+        let isTreeView = true;
+        
+        // JSON files available
+        const jsonFiles = [
+            { name: 'Access Control Results', filename: 'access_control_results.json', week:'{}' },
+            { name: 'Auth ML Results', filename: 'auth_ml_results.json', week: '{}' },
+            { name: 'Authentication Results', filename: 'auth_results.json', week: '{}' },
+            { name: 'Brute Force Logs', filename: 'bruteforce_logs.json', week: '{}' },
+            { name: 'Crawl Results', filename: 'crawl_results.json', week: '{}' },
+            { name: 'SQL Injection Results', filename: 'sqli_results.json', week: '{}' },
+            { name: 'Target Analysis', filename: 'target_analysis.json', week: '{}' }
+        ];
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            loadJSONFileList();
+            // Load first file by default
+            setTimeout(() => {
+                if (jsonFiles.length > 0) {
+                    loadJSONFile(jsonFiles[0].filename);
+                }
+            }, 500);
+        });
+        
+        // Load JSON file list into sidebar
+        function loadJSONFileList() {
+            const fileList = document.getElementById('json-file-list');
+            fileList.innerHTML = '';
+            
+            jsonFiles.forEach(file => {
+                const item = document.createElement('a');
+                item.className = 'list-group-item list-group-item-action json-file-item';
+                item.href = '#';
+                item.innerHTML = `
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-file-code text-primary"></i>
+                            <strong>${file.name}</strong>
+                            <br>
+                            <small class="text-muted">${file.filename}</small>
+                        </div>
+                        <span class="badge bg-secondary"> ${file.week}</span>
+                    </div>
+                `;
+                item.onclick = () => loadJSONFile(file.filename);
+                fileList.appendChild(item);
+            });
+        }
+        
+        // Load JSON file via Flask route
+        function loadJSONFile(filename) {
+            currentJSONFile = filename;
+            
+            // Update UI
+            document.getElementById('current-filename').textContent = filename;
+            document.getElementById('empty-preview').classList.add('d-none');
+            document.getElementById('json-content').classList.remove('d-none');
+            document.getElementById('json-actions').style.display = 'block';
+            
+            // Show loading
+            document.getElementById('json-content').innerHTML = '<div class="text-center py-5"><i class="fas fa-spinner fa-spin fa-2x"></i><p>Loading JSON data...</p></div>';
+            
+            // Use Flask route to get JSON
+            fetch(`/json-files/${filename}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    currentJSONData = data;
+                    displayJSON(data);
+                    updateFileSummary(filename, data);
+                    analyzeJSONStructure(data);
+                    
+                    // Update active file in list
+                    updateActiveFile(filename);
+                })
+                .catch(error => {
+                    console.error('Error loading JSON:', error);
+                    document.getElementById('json-content').innerHTML = `
+                        <div class="alert alert-danger">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Error loading JSON file: ${error.message}
+                        </div>
+                    `;
+                });
+        }
+        
+        // Display JSON in tree view
+        function displayJSON(data) {
+            const container = document.getElementById('json-content');
+            
+            if (isTreeView) {
+                container.innerHTML = createJSONTree(data);
+                // Add click handlers for toggling
+                container.querySelectorAll('.json-toggle').forEach(toggle => {
+                    toggle.addEventListener('click', function() {
+                        const content = this.nextElementSibling;
+                        if (content.style.display === 'none') {
+                            content.style.display = 'block';
+                            this.textContent = '▼';
+                        } else {
+                            content.style.display = 'none';
+                            this.textContent = '▶';
+                        }
+                    });
+                });
+            } else {
+                // Pretty print JSON
+                container.innerHTML = `<pre><code class="language-json">${JSON.stringify(data, null, 2)}</code></pre>`;
+                hljs.highlightAll();
+            }
+        }
+        
+        // Create JSON tree view
+        function createJSONTree(data, depth = 0) {
+            if (data === null) return '<span class="json-null">null</span>';
+            if (data === undefined) return '<span class="json-null">undefined</span>';
+            
+            if (Array.isArray(data)) {
+                if (data.length === 0) return '[ ]';
+                
+                let html = '[<span class="json-toggle">▼</span><div style="margin-left: 20px;">';
+                data.forEach((item, index) => {
+                    html += `<div>${createJSONTree(item, depth + 1)}${index < data.length - 1 ? ',' : ''}</div>`;
+                });
+                html += '</div>]';
+                return html;
+            }
+            
+            if (typeof data === 'object') {
+                const keys = Object.keys(data);
+                if (keys.length === 0) return '{ }';
+                
+                let html = '{<span class="json-toggle">▼</span><div style="margin-left: 20px;">';
+                keys.forEach((key, index) => {
+                    const value = data[key];
+                    let valueHtml = createJSONTree(value, depth + 1);
+                    
+                    // Add severity badges for vulnerability data
+                    if (key === 'severity' && typeof value === 'string') {
+                        const severityClass = value.toLowerCase();
+                        valueHtml = `<span class="severity-badge ${severityClass}">${value}</span>`;
+                    }
+                    
+                    // Highlight vulnerabilities
+                    if (key === 'type' && typeof value === 'string' && 
+                        (value.includes('SQL') || value.includes('XSS') || value.includes('Auth'))) {
+                        valueHtml = `<span class="badge bg-danger">${value}</span>`;
+                    }
+                    
+                    html += `<div><span class="json-key">"${key}"</span>: ${valueHtml}${index < keys.length - 1 ? ',' : ''}</div>`;
+                });
+                html += '</div>}';
+                return html;
+            }
+            
+            // Primitive types
+            if (typeof data === 'string') {
+                return `<span class="json-string">"${data}"</span>`;
+            }
+            if (typeof data === 'number') {
+                return `<span class="json-number">${data}</span>`;
+            }
+            if (typeof data === 'boolean') {
+                return `<span class="json-boolean">${data}</span>`;
+            }
+            
+            return data;
+        }
+        
+        // Update active file in list
+        function updateActiveFile(filename) {
+            document.querySelectorAll('.json-file-item').forEach(item => {
+                item.classList.remove('active');
+                const itemText = item.textContent.toLowerCase();
+                if (itemText.includes(filename.toLowerCase())) {
+                    item.classList.add('active');
+                }
+            });
+        }
+        
+        // Update file summary
+        function updateFileSummary(filename, data) {
+            const summaryDiv = document.getElementById('file-summary');
+            
+            let vulnCount = 0;
+            let totalSize = JSON.stringify(data).length;
+            
+            // Count vulnerabilities if present
+            if (data.vulnerabilities && Array.isArray(data.vulnerabilities)) {
+                vulnCount = data.vulnerabilities.length;
+            }
+            
+            summaryDiv.innerHTML = `
+                <div class="col-6">
+                    <div class="summary-card bg-light">
+                        <small class="text-muted">File Size</small>
+                        <div class="vuln-count text-primary">${(totalSize / 1024).toFixed(2)} KB</div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="summary-card bg-light">
+                        <small class="text-muted">Vulnerabilities</small>
+                        <div class="vuln-count ${vulnCount > 0 ? 'text-danger' : 'text-success'}">${vulnCount}</div>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Analyze JSON structure
+        function analyzeJSONStructure(data) {
+            const analysisDiv = document.getElementById('json-analysis');
+            const analysisCard = document.getElementById('analysis-card');
+            
+            let analysis = {
+                type: typeof data,
+                isArray: Array.isArray(data),
+                keyCount: 0,
+                depth: 0,
+                estimatedRecords: 0
+            };
+            
+            if (typeof data === 'object' && data !== null) {
+                analysis.keyCount = Object.keys(data).length;
+                
+                // Check for vulnerabilities
+                if (data.vulnerabilities && Array.isArray(data.vulnerabilities)) {
+                    analysis.estimatedRecords = data.vulnerabilities.length;
+                    
+                    // Count by severity
+                    const severityCount = { critical: 0, high: 0, medium: 0, low: 0 };
+                    data.vulnerabilities.forEach(vuln => {
+                        if (vuln.severity) {
+                            const severity = vuln.severity.toLowerCase();
+                            if (severityCount[severity] !== undefined) {
+                                severityCount[severity]++;
+                            }
+                        }
+                    });
+                    
+                    analysisDiv.innerHTML = `
+                        <h6>Vulnerability Analysis</h6>
+                        <p>Total vulnerabilities found: <strong>${data.vulnerabilities.length}</strong></p>
+                        <div class="row mt-2">
+                            ${severityCount.critical > 0 ? `<div class="col-3"><span class="badge bg-danger">Critical: ${severityCount.critical}</span></div>` : ''}
+                            ${severityCount.high > 0 ? `<div class="col-3"><span class="badge bg-warning">High: ${severityCount.high}</span></div>` : ''}
+                            ${severityCount.medium > 0 ? `<div class="col-3"><span class="badge bg-info">Medium: ${severityCount.medium}</span></div>` : ''}
+                            ${severityCount.low > 0 ? `<div class="col-3"><span class="badge bg-success">Low: ${severityCount.low}</span></div>` : ''}
+                        </div>
+                    `;
+                    analysisCard.classList.remove('d-none');
+                } else {
+                    analysisCard.classList.add('d-none');
+                }
+            }
+        }
+        
+        // Download JSON file
+        function downloadJSON() {
+            if (!currentJSONData) return;
+            
+            const dataStr = JSON.stringify(currentJSONData, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = currentJSONFile;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+        }
+        
+        // Copy JSON to clipboard
+        function copyToClipboard() {
+            if (!currentJSONData) return;
+            
+            const jsonString = JSON.stringify(currentJSONData, null, 2);
+            navigator.clipboard.writeText(jsonString)
+                .then(() => {
+                    alert('JSON copied to clipboard!');
+                })
+                .catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
+        }
+        
+        // Toggle between tree view and raw JSON
+        function toggleTreeView() {
+            isTreeView = !isTreeView;
+            if (currentJSONData) {
+                displayJSON(currentJSONData);
+            }
+        }
+        
+        // Analyze JSON
+        function analyzeJSON() {
+            if (currentJSONData) {
+                analyzeJSONStructure(currentJSONData);
+            }
+        }
+    </script>
+</body>
+</html>

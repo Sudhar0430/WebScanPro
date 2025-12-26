@@ -201,6 +201,33 @@
             color: #7f8c8d;
             font-size: 0.9rem;
         }
+         /* JSON Findings Specific Styles */
+        .bg-gradient-json {
+            background: linear-gradient(135deg, #159957 0%, #155799 100%);
+        }
+        .btn-json {
+            background: linear-gradient(135deg, #159957 0%, #155799 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-json:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(21, 153, 87, 0.3);
+            color: white;
+        }
+        .hover-card {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            background: #f8f9fa;
+        }
     </style>
 </head>
 <body>
@@ -212,7 +239,7 @@
                     <nav class="navbar navbar-expand-lg navbar-light mb-4">
                         <div class="container-fluid">
                             <a class="navbar-brand" href="#">
-                                <i class="fas fa-shield-alt"></i> AI Security Dashboard
+                                <i class=""></i> AI Security Dashboard
                             </a>
                             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                                 <span class="navbar-toggler-icon"></span>
@@ -225,10 +252,17 @@
                                         </a>
                                     </li>
                                     
-                                    <!-- In your main dashboard navigation -->
+                                    
 <li class="nav-item">
     <a class="nav-link" href="/weekly-reports">
         <i class="fas fa-file-alt"></i> Weekly Reports
+    </a>
+</li>
+
+
+<li class="nav-item">
+    <a class="nav-link" href="/json-findings">
+        <i class="fas fa-code"></i> JSON Findings
     </a>
 </li>
                                     <li class="nav-item">
@@ -405,6 +439,95 @@
                             </div>
                         </div>
                     </div>
+                     <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header bg-gradient-json text-white d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">
+                                        <i class="fas fa-database"></i> JSON Findings Explorer
+                                    </h5>
+                                    <a href="/json-findings" class="btn btn-sm btn-light">
+                                        <i class="fas fa-external-link-alt"></i> Open Full Explorer
+                                    </a>
+                                </div>
+                                <div class="card-body">
+                                    <p class="text-center mb-4">Explore raw JSON scan results with interactive tree view, syntax highlighting, and vulnerability analysis.</p>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="text-center p-3 border rounded hover-card" onclick="window.location.href='/json-findings'">
+                                                <i class="fas fa-lock fa-2x text-primary mb-2"></i>
+                                                <h6>Access Control</h6>
+                                                <small class="text-muted d-block">access_control_results.json</small>
+                                                <span class="badge bg-secondary mt-1">{}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="text-center p-3 border rounded hover-card" onclick="window.location.href='/json-findings'">
+                                                <i class="fas fa-database fa-2x text-success mb-2"></i>
+                                                <h6>SQL Injection</h6>
+                                                <small class="text-muted d-block">sqli_results.json</span>
+                                                <span class="badge bg-secondary mt-1">{}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="text-center p-3 border rounded hover-card" onclick="window.location.href='/json-findings'">
+                                                <i class="fas fa-user-shield fa-2x text-warning mb-2"></i>
+                                                <h6>Authentication</h6>
+                                                <small class="text-muted d-block">auth_results.json</small>
+                                                <span class="badge bg-secondary mt-1">{}</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="text-center p-3 border rounded hover-card" onclick="window.location.href='/json-findings'">
+                                                <i class="fas fa-bullseye fa-2x text-danger mb-2"></i>
+                                                <h6>Target Analysis</h6>
+                                                <small class="text-muted d-block">target_analysis.json</small>
+                                                <span class="badge bg-secondary mt-1">{}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="row mt-3">
+                                        <div class="col-md-6">
+                                            <div class="d-flex align-items-center p-3 bg-light rounded">
+                                                <i class="fas fa-tree fa-2x text-info me-3"></i>
+                                                <div>
+                                                    <h6 class="mb-0">Interactive Tree View</h6>
+                                                    <small class="text-muted">Collapsible JSON structure with syntax highlighting</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="d-flex align-items-center p-3 bg-light rounded">
+                                                <i class="fas fa-chart-bar fa-2x text-info me-3"></i>
+                                                <div>
+                                                    <h6 class="mb-0">Vulnerability Analysis</h6>
+                                                    <small class="text-muted">Auto-detects and categorizes security findings</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="text-center mt-4">
+                                        <a href="/json-findings" class="btn btn-json">
+                                            <i class="fas fa-search"></i> Explore All JSON Files
+                                        </a>
+                                        <button class="btn btn-outline-secondary ms-2" onclick="testJSONFiles()">
+                                            <i class="fas fa-bolt"></i> Test Connection
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-3">
+    <button class="btn btn-sm btn-outline-secondary" onclick="debugDashboard()">
+        <i class="fas fa-bug"></i> Debug Dashboard
+    </button>
+</div>
+
 
 
 
@@ -428,115 +551,263 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        // Load dashboard data
-        $(document).ready(function() {
-            loadDashboardData();
-            loadCharts();
-        });
+    // Load dashboard data
+    $(document).ready(function() {
+        loadDashboardData();
+        loadCharts();
+    });
 
-        function loadDashboardData() {
-            $.getJSON('/api/dashboard-data', function(data) {
-                // Update vulnerabilities table
-                let tableHtml = '';
-                data.vulnerabilities.slice(0, 10).forEach(function(vuln) {
-                    let severityClass = 'badge-' + vuln.severity.toLowerCase();
+    function loadDashboardData() {
+        $.getJSON('/api/dashboard-data', function(data) {
+            console.log("Dashboard Data:", data); // Debug log
+            
+            // Update vulnerabilities table
+            let tableHtml = '';
+            
+            if (data.vulnerabilities && data.vulnerabilities.length > 0) {
+                data.vulnerabilities.slice(0, 10).forEach(function(vuln, index) {
+                    let severityClass = 'badge-' + (vuln.severity ? vuln.severity.toLowerCase() : 'medium');
+                    let riskScore = vuln.risk_score || 5;
+                    
                     tableHtml += `
                         <tr>
-                            <td><span class="ai-badge">${vuln.type}</span></td>
-                            <td><span class="risk-badge ${severityClass}">${vuln.severity}</span></td>
-                            <td><strong>${vuln.risk_score}</strong>/10</td>
-                            <td><code>${vuln.endpoint.substring(0, 40)}${vuln.endpoint.length > 40 ? '...' : ''}</code></td>
-                            <td>${vuln.mitigations[0].substring(0, 50)}...</td>
-                            <td>${vuln.source_report}</td>
+                            <td>
+                                <span class="ai-badge">${vuln.type || vuln.original_type || 'Unknown'}</span>
+                            </td>
+                            <td>
+                                <span class="risk-badge ${severityClass}">
+                                    ${vuln.severity || 'Medium'}
+                                </span>
+                            </td>
+                            <td><strong>${riskScore.toFixed(1)}</strong>/10</td>
+                            <td>
+                                <code title="${vuln.endpoint || 'N/A'}">
+                                    ${vuln.endpoint ? (vuln.endpoint.substring(0, 40) + (vuln.endpoint.length > 40 ? '...' : '')) : 'N/A'}
+                                </code>
+                            </td>
+                            <td title="${vuln.mitigations ? vuln.mitigations.join(', ') : 'No mitigations provided'}">
+                                ${vuln.mitigations && vuln.mitigations.length > 0 ? vuln.mitigations[0].substring(0, 50) + '...' : 'Review security guidelines'}
+                            </td>
+                            <td>${vuln.source_report || 'Unknown'}</td>
                         </tr>
                     `;
                 });
-                $('#vulnerabilitiesTable').html(tableHtml);
-            });
-        }
+            } else {
+                // Show sample data if no vulnerabilities
+                tableHtml = `
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">
+                            <i class="fas fa-exclamation-circle"></i>
+                            No vulnerability data available. Run security scans to generate data.
+                        </td>
+                    </tr>
+                `;
+            }
+            
+            $('#vulnerabilitiesTable').html(tableHtml);
+            
+            // Update executive summary if needed
+            updateExecutiveSummary(data);
+        }).fail(function(jqXHR, textStatus, errorThrown) {
+            console.error("Failed to load dashboard data:", textStatus, errorThrown);
+            $('#vulnerabilitiesTable').html(`
+                <tr>
+                    <td colspan="6" class="text-center text-danger">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Error loading vulnerability data. Please check console.
+                    </td>
+                </tr>
+            `);
+        });
+    }
 
-        function loadCharts() {
-            // Severity Distribution Chart
-            $.getJSON('/api/severity-distribution', function(data) {
+    function updateExecutiveSummary(data) {
+        // If summary data is missing from template, update it dynamically
+        if (data.summary && !$('.executive-summary .lead').text().includes('vulnerabilities')) {
+            const summary = data.summary;
+            const narrative = `
+                AI analysis detected ${summary.total_vulnerabilities || 0} vulnerabilities. 
+                ${summary.critical_count ? summary.critical_count + ' critical issues require immediate attention.' : 'No critical issues found.'}
+            `;
+            const recommendation = summary.critical_count > 0 
+                ? 'Address critical vulnerabilities within 24 hours.' 
+                : 'Continue regular security monitoring.';
+            
+            $('.executive-summary .lead').text(narrative);
+            $('.executive-summary strong:contains("AI Recommendation")').next().text(recommendation);
+        }
+    }
+
+    function loadCharts() {
+        // Severity Distribution Chart
+        $.getJSON('/api/severity-distribution', function(data) {
+            console.log("Severity Distribution Data:", data); // Debug log
+            
+            if (data && Object.keys(data).length > 0) {
                 let labels = Object.keys(data);
                 let values = Object.values(data);
                 let colors = ['#e74c3c', '#e67e22', '#3498db', '#27ae60'];
                 
-                let severityChart = {
-                    data: [{
-                        values: values,
-                        labels: labels,
-                        type: 'pie',
-                        marker: {
-                            colors: colors
-                        },
-                        textinfo: 'label+percent',
-                        hoverinfo: 'label+value+percent',
-                        hole: 0.4,
-                        rotation: 45
-                    }],
-                    layout: {
-                        height: 300,
-                        showlegend: true,
-                        plot_bgcolor: 'transparent',
-                        paper_bgcolor: 'transparent',
-                        legend: {
-                            orientation: 'h'
+                // Filter out zero values for better visualization
+                const filteredData = labels.map((label, index) => ({
+                    label,
+                    value: values[index],
+                    color: colors[index % colors.length]
+                })).filter(item => item.value > 0);
+                
+                if (filteredData.length > 0) {
+                    const severityChart = {
+                        data: [{
+                            values: filteredData.map(item => item.value),
+                            labels: filteredData.map(item => item.label),
+                            type: 'pie',
+                            marker: {
+                                colors: filteredData.map(item => item.color)
+                            },
+                            textinfo: 'label+percent',
+                            hoverinfo: 'label+value+percent',
+                            hole: 0.4,
+                            rotation: 45
+                        }],
+                        layout: {
+                            height: 300,
+                            showlegend: true,
+                            plot_bgcolor: 'transparent',
+                            paper_bgcolor: 'transparent',
+                            legend: {
+                                orientation: 'h'
+                            }
                         }
-                    }
-                };
-                
-                Plotly.newPlot('severityChart', severityChart.data, severityChart.layout);
-            });
-
-            // Vulnerability Trends Chart
-            $.getJSON('/api/vulnerability-trends', function(data) {
-                let dates = data.map(item => item.date);
-                let counts = data.map(item => item.count);
-                
-                let trendChart = {
-                    data: [{
-                        x: dates,
-                        y: counts,
-                        type: 'scatter',
-                        mode: 'lines+markers',
-                        line: {
-                            color: '#667eea',
-                            width: 3
-                        },
-                        marker: {
-                            color: '#764ba2',
-                            size: 8
-                        },
-                        fill: 'tozeroy',
-                        fillcolor: 'rgba(102, 126, 234, 0.1)'
-                    }],
-                    layout: {
-                        title: 'Vulnerability Trends (Last 10 Days)',
-                        height: 300,
-                        plot_bgcolor: 'transparent',
-                        paper_bgcolor: 'transparent',
-                        xaxis: {
-                            type: 'date'
-                        },
-                        yaxis: {
-                            title: 'Number of Vulnerabilities'
-                        }
-                    }
-                };
-                
-                // Create trend chart if element exists
-                if ($('#trendChart').length) {
-                    Plotly.newPlot('trendChart', trendChart.data, trendChart.layout);
+                    };
+                    
+                    Plotly.newPlot('severityChart', severityChart.data, severityChart.layout);
+                } else {
+                    $('#severityChart').html(`
+                        <div class="text-center py-5 text-muted">
+                            <i class="fas fa-chart-pie fa-3x mb-3"></i>
+                            <p>No severity data available</p>
+                        </div>
+                    `);
                 }
-            });
-        }
+            } else {
+                $('#severityChart').html(`
+                    <div class="text-center py-5 text-muted">
+                        <i class="fas fa-chart-pie fa-3x mb-3"></i>
+                        <p>No severity distribution data</p>
+                    </div>
+                `);
+            }
+        }).fail(function() {
+            $('#severityChart').html(`
+                <div class="text-center py-5 text-danger">
+                    <i class="fas fa-exclamation-triangle fa-3x mb-3"></i>
+                    <p>Failed to load severity chart</p>
+                </div>
+            `);
+        });
 
-        function loadTrends() {
-            // Create trends modal or redirect
-            window.location.href = '/ai-report#trends';
-        }
+        // Vulnerability Type Chart
+        $.getJSON('/api/dashboard-data', function(data) {
+            console.log("Type Chart Data:", data); // Debug log
+            
+            if (data.vulnerabilities && data.vulnerabilities.length > 0) {
+                // Count vulnerability types
+                const typeCounts = {};
+                data.vulnerabilities.forEach(vuln => {
+                    const type = vuln.type || vuln.original_type || 'Unknown';
+                    typeCounts[type] = (typeCounts[type] || 0) + 1;
+                });
+                
+                const labels = Object.keys(typeCounts);
+                const values = Object.values(typeCounts);
+                
+                if (labels.length > 0) {
+                    const typeChart = {
+                        data: [{
+                            x: labels,
+                            y: values,
+                            type: 'bar',
+                            marker: {
+                                color: '#667eea'
+                            }
+                        }],
+                        layout: {
+                            title: 'Vulnerability Types',
+                            height: 300,
+                            plot_bgcolor: 'transparent',
+                            paper_bgcolor: 'transparent',
+                            xaxis: {
+                                title: 'Vulnerability Type'
+                            },
+                            yaxis: {
+                                title: 'Count'
+                            }
+                        }
+                    };
+                    
+                    Plotly.newPlot('typeChart', typeChart.data, typeChart.layout);
+                } else {
+                    $('#typeChart').html(`
+                        <div class="text-center py-5 text-muted">
+                            <i class="fas fa-chart-bar fa-3x mb-3"></i>
+                            <p>No vulnerability type data</p>
+                        </div>
+                    `);
+                }
+            } else {
+                $('#typeChart').html(`
+                    <div class="text-center py-5 text-muted">
+                        <i class="fas fa-chart-bar fa-3x mb-3"></i>
+                        <p>No vulnerability data for type chart</p>
+                    </div>
+                `);
+            }
+        });
+    }
+
+    function loadTrends() {
+        $.getJSON('/api/vulnerability-trends', function(data) {
+            console.log("Trends Data:", data);
+            
+            if (data && data.length > 0) {
+                // Create trends modal or redirect
+                alert(`Showing ${data.length} days of trend data. Check console for details.`);
+            } else {
+                alert('No trend data available. Run scans over multiple days.');
+            }
+        });
+    }
+    
+    // Test JSON files connection
+    function testJSONFiles() {
+        const testFiles = ['sqli_results.json', 'auth_results.json', 'access_control_results.json'];
+        let successCount = 0;
         
-    </script>
+        testFiles.forEach(filename => {
+            fetch(`/json-files/${filename}`)
+                .then(response => {
+                    if (response.ok) {
+                        successCount++;
+                        console.log(`✓ ${filename} is accessible`);
+                    }
+                })
+                .catch(error => {
+                    console.log(`✗ ${filename} failed: ${error}`);
+                });
+        });
+        
+        setTimeout(() => {
+            alert(`JSON Files Test: ${successCount}/${testFiles.length} files accessible`);
+        }, 1500);
+    }
+    
+    // Auto-refresh dashboard every 30 seconds
+    setInterval(function() {
+        if (!$('#vulnerabilitiesTable').is(':empty')) {
+            loadDashboardData();
+            console.log("Dashboard auto-refreshed");
+        }
+    }, 30000);
+</script>
 </body>
 </html>

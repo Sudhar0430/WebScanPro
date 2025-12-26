@@ -55,6 +55,66 @@
             max-height: 400px;
             overflow-y: auto;
         }
+        .severity-badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+.critical { 
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    color: white; 
+}
+.high { 
+    background: linear-gradient(45deg, #e67e22, #d35400);
+    color: white; 
+}
+.medium { 
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white; 
+}
+.low { 
+    background: linear-gradient(45deg, #27ae60, #229954);
+    color: white; 
+}
+
+/* Gradient Cards (for consistency) */
+.card.critical {
+    border-left: 5px solid #e74c3c;
+}
+.card.high {
+    border-left: 5px solid #e67e22;
+}
+.card.medium {
+    border-left: 5px solid #3498db;
+}
+.card.low {
+    border-left: 5px solid #27ae60;
+}
+
+/* Risk Badges (for consistency) */
+.risk-badge {
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+.badge-critical {
+    background: linear-gradient(45deg, #e74c3c, #c0392b);
+    color: white;
+}
+.badge-high {
+    background: linear-gradient(45deg, #e67e22, #d35400);
+    color: white;
+}
+.badge-medium {
+    background: linear-gradient(45deg, #3498db, #2980b9);
+    color: white;
+}
+.badge-low {
+    background: linear-gradient(45deg, #27ae60, #229954);
+    color: white;
+}
     </style>
 </head>
 <body>
@@ -73,6 +133,9 @@
                         <a class="nav-link active" href="/weekly-reports">
                             <i class="fas fa-file-alt"></i> Weekly Reports
                         </a>
+                         <a class="nav-link" href="/json-findings">
+                <i class="fas fa-code"></i> JSON Findings
+            </a>
                         <a class="nav-link" href="/ai-report">
                             <i class="fas fa-robot"></i> AI Analysis
                         </a>
@@ -93,27 +156,27 @@
                             <div class="list-group">
                                 <a href="#access_control" class="list-group-item list-group-item-action" onclick="loadReport('access_control_report.html')">
                                     <i class="fas fa-lock"></i> Access Control Report
-                                    <span class="badge bg-info float-end">Week 1</span>
+                                    <span class="badge bg-info float-end"></span>
                                 </a>
                                 <a href="#auth_ml" class="list-group-item list-group-item-action" onclick="loadReport('auth_ml_report.html')">
                                     <i class="fas fa-brain"></i> Auth ML Analysis
-                                    <span class="badge bg-info float-end">Week 2</span>
+                                    <span class="badge bg-info float-end"></span>
                                 </a>
                                 <a href="#auth" class="list-group-item list-group-item-action" onclick="loadReport('auth_report.html')">
                                     <i class="fas fa-user-shield"></i> Authentication Report
-                                    <span class="badge bg-info float-end">Week 3</span>
+                                    <span class="badge bg-info float-end"></span>
                                 </a>
                                 <a href="#sqli" class="list-group-item list-group-item-action" onclick="loadReport('sqli_report.html')">
                                     <i class="fas fa-database"></i> SQL Injection Report
-                                    <span class="badge bg-info float-end">Week 4</span>
+                                    <span class="badge bg-info float-end"></span>
                                 </a>
                                 <a href="#target" class="list-group-item list-group-item-action" onclick="loadReport('target_report.html')">
                                     <i class="fas fa-bullseye"></i> Target Analysis Report
-                                    <span class="badge bg-info float-end">Week 5</span>
+                                    <span class="badge bg-info float-end"></span>
                                 </a>
                                 <a href="#xss" class="list-group-item list-group-item-action" onclick="loadReport('xss_report.html')">
                                     <i class="fas fa-code"></i> XSS Report
-                                    <span class="badge bg-info float-end">Week 6</span>
+                                    <span class="badge bg-info float-end"></span>
                                 </a>
                             </div>
                         </div>
@@ -125,12 +188,9 @@
                             <h6><i class="fas fa-info-circle"></i> Report Information</h6>
                             <p class="small text-muted">
                                 Click on any report to view it in the preview panel.
-                                These are the actual scan reports generated by your security testing modules.
+                                These are the actual scan reports generated by security testing modules.
                             </p>
-                            <div class="alert alert-info small">
-                                <i class="fas fa-exclamation-circle"></i>
-                                <strong>Note:</strong> Reports are served securely through Flask.
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
