@@ -11,7 +11,7 @@
       "method": "GET",
       "evidence": "SQL error in response",
       "severity": "High",
-      "response_time": "0.10s"
+      "response_time": "0.01s"
     },
     {
       "type": "SQL Injection",
@@ -25,5 +25,5 @@
     }
   ],
   "payloads_tested": 23,
-  "timestamp": "2025-12-24 19:30:46"
+  "timestamp": "2026-01-01 22:01:11"
 }

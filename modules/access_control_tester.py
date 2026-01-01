@@ -861,11 +861,7 @@ class AccessControlTester:
             </table>
         </div>
         
-        <div class="card" style="text-align: center; background: #2c3e50; color: white;">
-            <h3>🔬 Week 6: Access Control & IDOR Testing Complete</h3>
-            <p>AI/ML Models: K-Means Clustering • Random Forest Classification • Pattern Recognition</p>
-            <p>© 2024 Infosys Internship Project - Real ML Implementation</p>
-        </div>
+        
     </div>
 </body>
 </html>"""
