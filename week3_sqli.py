@@ -88,10 +88,6 @@ def run_week3():
         else:
             print(f"{Fore.WHITE}   • None detected")
         
-        print(f"\n{Fore.GREEN}✅ Next Steps:")
-        print(f"{Fore.WHITE}   • Review the detailed report in output/sqli_report.html")
-        print(f"{Fore.WHITE}   • Implement the recommended mitigations")
-        print(f"{Fore.WHITE}   • Proceed to Week 4: XSS Testing")
         
     else:
         print(f"{Fore.RED}[-] Failed to authenticate to DVWA!")

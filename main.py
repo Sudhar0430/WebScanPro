@@ -52,9 +52,7 @@ def main():
         print(f"{Fore.WHITE}   3. output/target_analysis.json - Analysis data")
         print(f"{Fore.WHITE}   4. output/urls.txt - List of discovered URLs")
         
-        print(f"\n{Fore.GREEN}✅ Next Steps:")
-        print(f"{Fore.WHITE}   • Open 'output/target_report.html' in your browser")
-        print(f"{Fore.WHITE}   • Proceed to Week 3: SQL Injection Testing")
+       
         
     else:
         print(f"{Fore.RED}[-] Failed to authenticate to DVWA!")

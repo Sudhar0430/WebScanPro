@@ -161,7 +161,7 @@ def run_comprehensive_auth_tests(use_ml=True):
         print(f"\n{Fore.MAGENTA}{'='*70}")
         print(f"{Fore.MAGENTA}              WEEK 5: ALL TASKS COMPLETED!")
         print(f"{Fore.MAGENTA}{'='*70}")
-        print(f"{Fore.GREEN}✅ All 7 tasks from mentor's email completed successfully")
+       
         
         if use_ml:
             print(f"{Fore.GREEN}✅ Real ML models from scikit-learn implemented")
@@ -169,8 +169,7 @@ def run_comprehensive_auth_tests(use_ml=True):
             print(f"{Fore.GREEN}✅ Advanced analytics with clustering and classification")
             print(f"{Fore.GREEN}✅ Models saved for future use and retraining")
         
-        print(f"{Fore.GREEN}✅ Professional reports generated")
-        print(f"{Fore.GREEN}✅ Ready for mentor review!")
+        
         
     else:
         print(f"{Fore.RED}[-] Failed to login to DVWA!")

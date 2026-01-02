@@ -127,10 +127,7 @@ def run_week4():
         print(f"{Fore.WHITE}   • Used {results['payloads_tested']} different XSS payloads")
         print(f"{Fore.WHITE}   • Targeted DVWA XSS-specific pages")
         
-        print(f"\n{Fore.GREEN}✅ Next Steps:")
-        print(f"{Fore.WHITE}   • Review the detailed report: output/xss_report.html")
-        print(f"{Fore.WHITE}   • Implement the XSS prevention recommendations")
-        print(f"{Fore.WHITE}   • Proceed to Week 5: Authentication and Session Testing")
+       
         
         # Save week completion marker
         with open('output/week4_completed.txt', 'w') as f:
