@@ -140,6 +140,8 @@ WEBSCANPRO
 
 
 • Functional Modules
+
+
 • Target Scanning and Intelligent Crawling Module
 
 This module performs automated discovery of web application components. It crawls web pages recursively, identifies URLs, forms, and input fields, and maintains authenticated sessions where required. The output forms the baseline for subsequent vulnerability testing.
