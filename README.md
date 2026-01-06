@@ -1,11 +1,12 @@
 WebScanPro – AI-Driven Web Application Security Testing Tool
-Overview
+
+• Overview
 
 WebScanPro is an automated web application security testing framework designed to identify vulnerabilities aligned with the OWASP Top 10 standards. The tool integrates traditional security testing techniques with machine learning–based analysis to detect, classify, and prioritize security risks, generating comprehensive and actionable security reports.
 
-This project was developed as part of the Infosys Springboard Internship 6.0 (Artificial Intelligence Track).
 
-Key Capabilities
+
+• Key Capabilities
 
 Automated discovery and analysis of web application attack surfaces
 
@@ -19,7 +20,7 @@ Risk scoring and vulnerability prioritization
 
 Professional security reporting in HTML, JSON, and PDF formats
 
-Technology Stack
+• Technology Stack
 
 Programming Language: Python 3.10+
 
@@ -138,8 +139,8 @@ WEBSCANPRO
 └── week6_access_control.py
 
 
-Functional Modules
-Target Scanning and Intelligent Crawling Module
+• Functional Modules
+• Target Scanning and Intelligent Crawling Module
 
 This module performs automated discovery of web application components. It crawls web pages recursively, identifies URLs, forms, and input fields, and maintains authenticated sessions where required. The output forms the baseline for subsequent vulnerability testing.
 
@@ -153,7 +154,7 @@ Input field risk identification
 
 Target surface mapping
 
-SQL Injection Testing Module
+• SQL Injection Testing Module
 
 The SQL Injection module evaluates GET and POST parameters using multiple injection techniques. It identifies error-based, boolean-based, and time-based SQL injection vulnerabilities and classifies findings by severity.
 
@@ -167,7 +168,7 @@ Time-delay analysis
 
 Severity classification and reporting
 
-Cross-Site Scripting (XSS) Testing Module
+• Cross-Site Scripting (XSS) Testing Module
 
 This module tests for reflected and form-based XSS vulnerabilities using a diverse payload library. It analyzes response content to detect script execution and payload reflection across multiple contexts.
 
@@ -181,7 +182,7 @@ Payload categorization
 
 Remediation recommendations
 
-Authentication and Session Security Testing Module
+• Authentication and Session Security Testing Module
 
 This module evaluates authentication mechanisms and session management practices. It simulates real-world attack scenarios such as weak credential usage, brute-force attempts, and session fixation.
 
@@ -197,7 +198,7 @@ Session cookie flag analysis
 
 ML-based anomaly detection
 
-Access Control and IDOR Testing Module
+• Access Control and IDOR Testing Module
 
 The access control module identifies authorization weaknesses, including horizontal and vertical privilege escalation. It also detects Insecure Direct Object Reference (IDOR) vulnerabilities using pattern-based and machine learning approaches.
 
@@ -211,7 +212,7 @@ IDOR vulnerability identification
 
 ML-assisted response pattern classification
 
-AI-Driven Security Report Generation Module
+• AI-Driven Security Report Generation Module
 
 This module aggregates results from all testing modules and applies machine learning and NLP techniques to classify vulnerabilities, assign risk scores, and generate executive-level insights.
 
@@ -225,7 +226,7 @@ Automated mitigation suggestions
 
 Interactive HTML dashboard and PDF reports
 
-Results Summary
+• Results Summary
 
 Total vulnerabilities detected: 43
 
@@ -235,7 +236,7 @@ Overall application risk score: 10 / 10
 
 AI model confidence level: High
 
-Limitations
+• Limitations
 
 Testing primarily validated on DVWA
 
@@ -245,7 +246,7 @@ Manual configuration required for target URLs
 
 Coverage focused on OWASP Top 10 vulnerabilities
 
-Future Enhancements
+• Future Enhancements
 
 Support for additional vulnerabilities such as CSRF, SSRF, XXE, and business logic flaws
 
