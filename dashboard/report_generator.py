@@ -1,7 +1,4 @@
-#!/usr/bin/env python3
-"""
-Report generation module for PDF and HTML outputs
-"""
+
 
 from typing import Dict  # Add this import
 from reportlab.lib import colors

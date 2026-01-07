@@ -1,7 +1,4 @@
-#!/usr/bin/env python3
-"""
-AI/ML module for vulnerability analysis and classification
-"""
+
 
 import numpy as np
 import pandas as pd
