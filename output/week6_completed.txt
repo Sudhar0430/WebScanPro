@@ -1,4 +1,4 @@
-Week 6 completed at: 2026-01-02 14:49:01
+Week 6 completed at: 2026-01-07 19:35:47
 Access control vulnerabilities found: 10
 ML models trained: 1
 IDOR tests performed: 7

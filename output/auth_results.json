@@ -1,7 +1,7 @@
 {
   "scan_type": "Comprehensive Authentication & Session Testing",
   "target": "http://localhost:8088",
-  "timestamp": "2026-01-02 16:22:46",
+  "timestamp": "2026-01-07 19:31:57",
   "tests_performed": [
     "Weak/Default Credential Testing",
     "Brute-Force Attack Simulation",
@@ -27,7 +27,7 @@
       "credentials": "admin/password",
       "evidence": "Successfully logged in with weak credentials",
       "severity": "High",
-      "response_time": "0.05s",
+      "response_time": "0.06s",
       "recommendation": "Enforce strong password policy and disable default credentials"
     },
     {
@@ -36,7 +36,7 @@
       "credentials": "pablo/letmein",
       "evidence": "Successfully logged in with weak credentials",
       "severity": "High",
-      "response_time": "0.05s",
+      "response_time": "0.07s",
       "recommendation": "Enforce strong password policy and disable default credentials"
     },
     {
@@ -45,7 +45,7 @@
       "credentials": "1337/charley",
       "evidence": "Successfully logged in with weak credentials",
       "severity": "High",
-      "response_time": "0.05s",
+      "response_time": "0.06s",
       "recommendation": "Enforce strong password policy and disable default credentials"
     },
     {
@@ -115,6 +115,6 @@
     "bruteforce_attempts": 99,
     "session_cookies_analyzed": 1,
     "avg_response_time": "0.06s",
-    "avg_session_entropy": "3.98"
+    "avg_session_entropy": "4.09"
   }
 }
